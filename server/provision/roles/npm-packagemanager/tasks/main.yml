@@ -1,0 +1,50 @@
+---
+
+- name: Latest version of pip will be present.
+  apt: name=python-pip state=latest
+  become: yes
+  become_method: sudo
+
+- name: Ensure support for SNI used by nodesource.com.
+  pip: name={{ item }} state=present
+  with_items: [urllib3, pyOpenSSL, ndg-httpsclient, pyasn1]
+  become: yes
+  become_method: sudo
+
+- name: Add NodeSource Signing Key
+  apt_key: "url=https://deb.nodesource.com/gpgkey/nodesource.gpg.key state=present"
+  become: yes
+  become_method: sudo
+
+- name: Install Python APT
+  apt: name=python-apt state=latest
+  become: yes
+  become_method: sudo
+
+- name: Add NodeJS Repository
+  apt_repository: "repo='deb https://deb.nodesource.com/node_{{ node_version }} {{ ansible_distribution_release }} main' state=present"
+  become: yes
+  become_method: sudo
+
+- name: Add NodeJS Source Repository
+  apt_repository: "repo='deb-src https://deb.nodesource.com/node_{{ node_version }} {{ ansible_distribution_release }} main' state=present"
+  become: yes
+  become_method: sudo
+
+- name: Install NodeJS
+  apt: name=nodejs state=latest
+  become: yes
+  become_method: sudo
+
+- name: Install Build Essentials (to support native addons via npm)
+  apt: name=build-essential state=latest
+  become: yes
+  become_method: sudo
+
+- name: Install Git
+  apt: name=git state=latest
+  become: yes
+  become_method: sudo
+
+- name: Ensure node_modules directory exists.
+  file: "path={{ frontend_packages }} state=directory"

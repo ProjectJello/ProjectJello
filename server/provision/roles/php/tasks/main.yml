@@ -1,0 +1,6 @@
+---
+
+- name: Latest version of PHP5 will be present.
+  apt: name=php5 state=latest
+  become: yes
+  become_method: sudo

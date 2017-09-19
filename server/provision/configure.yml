@@ -1,0 +1,21 @@
+---
+
+- hosts: all
+  remote_user: vagrant
+
+  vars_files:
+    - settings.yml
+
+  roles:
+    - php
+    - apache-server
+    - npm-packagemanager
+    - php-app
+    - npm-frontend
+
+  post_tasks:
+
+    - name: Provisioning has completed!
+      shell: "true"
+      notify:
+        - Restart Server
