@@ -7,7 +7,7 @@
   file: "path={{ frontend }}/node_modules state=directory"
 
 - name: Mount node_modules from VM onto shared folder.
-  mount: "src={{ frontend_packages }} name={{ frontend }}/node_modules opts='bind' fstype=none state=mounted"
+  shell: "mount --bind {{ frontend_packages }} {{ frontend }}/node_modules"
   become: yes
   become_method: sudo
 

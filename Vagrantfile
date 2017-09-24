@@ -22,4 +22,12 @@ Vagrant.configure("2") do |config|
     ansible.playbook = "configure.yml"
   end
 
+  # During Ansible provisioning, a mounted binding is created from the
+  # the virtual machine to the shared folder in order to store the project
+  # Node modules in the VM. The following provisioner ensures that this binding
+  # is preserved on subsequent boots of the VM.
+  config.vm.provision "shell", privileged: true, run: "always" do |shell|
+    shell.inline = "mount --bind /home/vagrant/node_modules /vagrant/client/node_modules"
+  end
+
 end
