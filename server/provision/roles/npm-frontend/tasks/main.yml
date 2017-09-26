@@ -16,3 +16,9 @@
   when: project.stat.exists == True
   args:
     chdir: "{{ frontend }}"
+
+- name: Static files will be built.
+  shell: npm run build
+  when: project.stat.exists == True
+  args:
+    chdir: "{{ frontend }}"

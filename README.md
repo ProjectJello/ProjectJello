@@ -24,9 +24,17 @@ or if you change some configuration.
 
 # Initial Environment
 
-* The project will have been set up and running on `localhost:8080`.
+* The project will have been set up and running on `localhost:8079`.
 
-# Making Changes to the Apache Configuration
+# Development
+
+* `./start-dev.sh`: This script runs a development server on `localhost:8080`.
+* `./build.sh`: This script builds the frontend assets. You only need to do this if you make
+changes to frontend assets while not using the development server.
+
+# Advanced
+
+## Making Changes to the Apache Configuration
 
 The Apache VirtualHost configuration can be found in
 `server/provision/roles/apache-server/files`. If you customize it,
