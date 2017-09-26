@@ -28,9 +28,10 @@ or if you change some configuration.
 
 # Development
 
-* `./start-dev.sh`: This script runs a development server on `localhost:8080`.
-* `./build.sh`: This script builds the frontend assets. You only need to do this if you make
+* `start-dev.sh`: This script runs a development server on `localhost:8080`.
+* `build-client.sh`: This script builds the frontend assets. You only need to do this if you make
 changes to frontend assets while not using the development server.
+* `test-client.sh`: This script runs the tests for the client code.
 
 # Advanced
 
