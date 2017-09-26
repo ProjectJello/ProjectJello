@@ -33,6 +33,10 @@ or if you change some configuration.
 changes to frontend assets while not using the development server.
 * `test-client.sh`: This script runs the tests for the client code.
 
+NOTE: On UNIX/Linux systems, you may have to add `. ` or `./` before the script name. e.g.
+`./script-name.sh`
+`. script-name.sh`
+
 # Advanced
 
 ## Making Changes to the Apache Configuration
