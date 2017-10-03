@@ -1,6 +1,6 @@
 <?php
 
-function make_file($filepath, $args){
+function make_file($filepath, $args, $perms = 0777){
 	$tempPath = "";
 	while(strpos($filepath, '/') !== false){
 		$slash = strpos($filepath, '/');
@@ -8,18 +8,37 @@ function make_file($filepath, $args){
 		$filepath = substr($filepath, $slash + 1);
 		if(!file_exists($tempPath)){
 			mkdir($tempPath);
+			chmod($tempPath, $perms);
 		}
 	}
-	return fopen($tempPath . $filepath, $args);
+	$file = fopen($tempPath . $filepath, $args);
+	chmod($tempPath . $filepath, $perms);
+	return $file;
+}
+
+function write_file($filepath, $string){
+		$file = make_file($filepath, "w");
+		fwrite($file, $string);
+		fclose($file);
+}
+
+function read_file($filepath){
+		$file = make_file($filepath, "r");
+		$data = fread($file, filesize($filepath));
+		fclose($file);
+		return $data;
 }
 
 // Just sending a basic JSON response to confirm all works.
 header('Content-Type: application/json');
 //echo json_encode(Array('message', 'Hello World'));
-make_file("/var/www/ProjectJello/Data/test.txt", "w+");
-//mkdir("/var/www/ProjectJello/Data");
-//$file = fopen("/var/www/ProjectJello/Data/test.txt", "w+") or die("Unable to open file");
-echo '{"name":"Squirrel"}';
+$filepath = "/var/www/ProjectJello/Data/test.txt";
+$squirrel = '{"name":"Squirrel"}';
+if(!file_exists($filepath))
+	write_file($filepath, $squirrel);
+$read_data = read_file($filepath, $squirrel);
+
+echo $read_data;
 return;
 
 ?>
