@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>Ping Test</title>
+
+<script>
+function httpGet(){
+	var url = "http://127.0.1.1/ping.php";
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", url, false);
+	xmlHttp.send(null);
+	return JSON.parse(xmlHttp.responseText);
+}
+var x = httpGet().time;
+
+var y = httpGet().time;
+document.write("Time 1:&nbsp" + x + "<br>");
+document.write("Time 2:&nbsp" + y + "<br>");
+document.write("Ping:&nbsp&nbsp&nbsp&nbsp&nbsp" + (y - x) * 1000);
+</script>
+
+</head>
+
+</html>
