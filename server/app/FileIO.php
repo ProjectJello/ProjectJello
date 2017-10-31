@@ -29,4 +29,11 @@ function read_file($filepath){
 		return $data;
 }
 
+function delete_file($filepath){
+	if(is_dir($filepath))
+		rmdir($filepath);
+	else
+		unlink($filepath);
+}
+
 ?>

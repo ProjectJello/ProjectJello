@@ -4,9 +4,10 @@
 
 <script>
 function httpGet(){
-	var url = "http://127.0.1.1/ping.php";
+	var url = "http://localhost/ping.php";
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
+	xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*");
 	xmlHttp.send(null);
 	return JSON.parse(xmlHttp.responseText);
 }
