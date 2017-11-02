@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>BluePlus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Projects-Screen" transform="translate(-485.000000, -223.000000)">
+            <g id="Tasks" transform="translate(332.000000, 208.000000)">
+                <g id="BluePlus" transform="translate(154.000000, 16.000000)">
+                    <rect id="Rectangle-3" fill="#4671A3" x="13.9481481" y="5" width="1.99259259" height="20"></rect>
+                    <rect id="Rectangle-3" fill="#4671A3" transform="translate(14.944444, 15.000000) rotate(90.000000) translate(-14.944444, -15.000000) " x="13.9481481" y="5" width="1.99259259" height="20"></rect>
+                    <ellipse id="Oval" stroke="#4671A3" stroke-width="2" cx="14.9444444" cy="15" rx="14.9444444" ry="15"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,35 @@
+.Sidebar {  
+	width: 300px;
+	height: 100vh;
+	background-color: #4671A3;
+	border: 0px;
+	text-align: center;
+	color: white;
+}
+
+.App-Logo {
+	margin-top: 30px;
+	margin-bottom: 3px;
+}
+
+.DisplayInline {
+	display: inline-block;
+}
+
+.Project {
+	text-align: left;
+}
+
+.Project .Project-Title, .Project .Add-Project.Icon {
+	display: inline-block;
+}
+
+#WhitePlus {
+	margin-left: 10px;
+	width: 25px;
+	height: 25px;
+}
+
+.Project-Title {
+	margin-left: 25px;
+}
