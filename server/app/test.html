@@ -3,22 +3,54 @@
 <title>Ping Test</title>
 
 <script>
-function httpGet(){
-	var url = "http://localhost/ping.php";
+function runQuery(){
+	var form = document.getElementById('params');
+	var request = "";
+	for(var i = 0; i < form.length; i ++){
+		request += form.elements[i].name + "=" + form.elements[i].value + "&";
+	}
+	document.getElementById('request').innerHTML = request;
+	
+	document.getElementById('content').innerHTML = httpGet(request);
+}
+
+function httpGet(data){
+	var url = "http://localhost/api?" + data;
 	var xmlHttp = new XMLHttpRequest();
 	xmlHttp.open("GET", url, false);
 	xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*");
 	xmlHttp.send(null);
-	return JSON.parse(xmlHttp.responseText);
+	return xmlHttp.responseText;
 }
-var x = httpGet().time;
-
-var y = httpGet().time;
-document.write("Time 1:&nbsp" + x + "<br>");
-document.write("Time 2:&nbsp" + y + "<br>");
-document.write("Ping:&nbsp&nbsp&nbsp&nbsp&nbsp" + (y - x) * 1000);
 </script>
 
 </head>
 
+<form id="params" >
+Request: 
+<select name="request">
+<option value="user">User</option>
+<option value="project">Project</option>
+<option value="task">Task</option>
+<option value="risk">Risk</option>
+</select><br>
+Mode:  
+<select name="mode">
+<option value="read">Read</option>
+<option value="new">New</option>
+<option value="update">Update</option>
+<option value="addup">Add User-Project</option>
+<option value="removeup">Remove User-Project</option>
+</select><br>
+Username: <input type="text" name="usern"><br>
+Project Name: <input type="text" name="projn"><br>
+Field: <input type="text" name="field"><br>
+Value: <input type="text" name="val"><br>
+Project ID: <input type="text" name="projId"><br>
+<input type="button" onclick="runQuery()" value="Run" name="Button">
+</form>
+<h3>Request</h3>
+<div id="request"></div>
+<h3>Response</h3>
+<div id="content"></div>
 </html>
