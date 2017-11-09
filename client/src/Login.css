@@ -2,11 +2,32 @@
     background-color: #4671a3;
     height: 100%;
     text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
   }
   
   .Login-logo {
-    animation: Login-logo-spin infinite 2s linear;
-    height: 80px;
+    height: 60px;
+  }
+
+  .Spacer{
+    margin: 8px;
+  }
+
+  .input{
+    border-radius: 6px;
+    padding: 6px;
+  }
+
+  .button{
+    border-radius: 3px;
+    padding: 6px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    width: 130px;
   }
   
   .Login-header {

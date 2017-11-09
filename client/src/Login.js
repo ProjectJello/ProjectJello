@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './Jello_Square.svg';
 import fulllogo from './JelloFullLogo.svg';
 import './Login.css';
 
@@ -7,12 +6,19 @@ class Login extends Component {
   render() {
     return (
       <div className="Login">
-          <div>
-            <img src={fulllogo} />
+          <div className = "Spacer">
+            
+            <img className ="Login-logo" alt="" src={fulllogo} />
           </div>
-          <div> 
-              <input />
+          <div className = "Spacer"> 
+              <input className = "input"
+              placeholder = 'Username' />
           </div>
+          <div className = "Spacer">
+            <button className ="button">
+              Login
+              </button>
+            </div>
       </div>
     );
   }
