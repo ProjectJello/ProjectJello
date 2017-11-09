@@ -12,11 +12,16 @@
     height: 60px;
   }
 
+  .El-Container {
+    width: 40%;
+  }
+
   .Spacer{
     margin: 8px;
   }
 
   .input{
+    width: 90%;
     border-radius: 6px;
     padding: 6px;
   }
@@ -27,7 +32,7 @@
     background-color: transparent;
     border: 1px solid white;
     color: white;
-    width: 130px;
+    width: 90%;
   }
   
   .Login-header {
