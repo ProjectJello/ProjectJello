@@ -1,0 +1,27 @@
+.Login {
+    background-color: #4671a3;
+    height: 100%;
+    text-align: center;
+  }
+  
+  .Login-logo {
+    animation: Login-logo-spin infinite 2s linear;
+    height: 80px;
+  }
+  
+  .Login-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .Login-intro {
+    font-size: large;
+  }
+  
+  @keyframes Login-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
