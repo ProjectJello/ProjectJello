@@ -1,5 +1,5 @@
 .Sidebar {  
-	width: 300px;
+	width: 250px;
 	height: 100vh;
 	background-color: #4671A3;
 	border: 0px;
@@ -32,4 +32,8 @@
 
 .Project-Title {
 	margin-left: 25px;
+}
+
+.ProjectListTable {
+	margin-left: 50px;
 }
