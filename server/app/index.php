@@ -91,8 +91,8 @@ function create_project($filepath, $username, $projectname){
 		$index = read_file($filepath . 'projects/ProjectCounter.txt');
 		if($index == '')
 			$index = 0;
-		$data = '{"name":"'.$projectname.'","owner":"'.$username.'","description":"","member":["'.$username.'"],"tasks":[],"risks":[]}';
-		write_file(project_file($filepath, $projectId), $data);
+		$data = '{"name":"'.$projectname.'","owner":"'.$username.'","description":"","members":["'.$username.'"],"tasks":[],"risks":[]}';
+		write_file(project_file($filepath, $index), $data);
 		$user = add_to_json_aray($user, 'projects', $index);
 		write_file(user_file($filepath, $username), $user);
 		write_file($filepath . 'projects/ProjectCounter.txt', $index + 1);
@@ -129,7 +129,7 @@ function add_user_to_project($filepath, $projectId, $username){
 	$data = read_file(project_file($filepath, $projectId));
 	if( $data != ''){
 		if(read_file(user_file($filepath, $username)) != ''){
-			$data = add_to_json_aray($data, "member", '"'.$username.'"');
+			$data = add_to_json_aray($data, "members", '"'.$username.'"');
 			write_file(project_file($filepath, $projectId), $data);
 			return $data;
 		}else{
