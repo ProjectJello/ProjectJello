@@ -39,10 +39,11 @@ function read_file($filepath, $generate = false){
 }
 
 function delete_file($filepath){
-	if(is_dir($filepath))
-		delete_folder($filepath);
-	else
-		unlink($filepath);
+	if(file_exists($filepath))
+		if(is_dir($filepath))
+			delete_folder($filepath);
+		else
+			unlink($filepath);
 }
 
 function delete_folder($filepath){

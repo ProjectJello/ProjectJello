@@ -197,51 +197,52 @@ if(array_key_exists('request',$_GET))
 //echo remove_from_json_aray('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", '"raspberry"');
 //Mode READ, WRITE, DELETE
 $mode = "not found";
-if(array_key_exists('mode',$_GET))
-	$mode = $_GET['mode'];
+//if(array_key_exists('mode',$_GET))
+//	$mode = $_GET['mode'];
+
 switch($request){
-	case 'user':
-		switch($mode){
-			case 'new': echo create_user($filepath, $_GET['usern']);
+	case 'usernew':
+		echo create_user($filepath, $_GET['usern']);
 		break;
-			case 'read': echo read_user($filepath, $_GET['usern']);
+	case 'userread':
+		echo read_user($filepath, $_GET['usern']);
 		break;
-			case 'addup': add_user_to_project($filepath, $_GET['projId'], $_GET['usern']);
-			echo add_project_to_user($filepath, $_GET['projId'], $_GET['usern']);
+	case 'userupdate':
+		// TODO
 		break;
-			case 'removeup': remove_user_from_project($filepath, $_GET['projId'], $_GET['usern']);
-			echo remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
+	case 'useraddproject':
+		add_user_to_project($filepath, $_GET['projId'], $_GET['usern']);
+		add_project_to_user($filepath, $_GET['projId'], $_GET['usern']);
 		break;
-			case 'delete': //echo read_user($filepath, $_GET['usern']);
+	case 'userremoveproject':
+		remove_user_from_project($filepath, $_GET['projId'], $_GET['usern']);
+		remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
 		break;
-		default: 
-			echo 'ERROR{"Error":"invalid mode ['.$mode.']"}';
-		}
+	case 'userdelete':
+		case 'delete': 
+		//Needs to remove user from projects
+		//delete_file(user_file($filepath, $_GET['usern']))
+		break;
+		
+	
+	case 'projectnew':
+		echo create_project($filepath, $_GET['usern'], $_GET['projn']);
+		break;
+	case 'projectread':
+		echo read_project($filepath, $_GET['projId']);
+		break;
+	case 'projectupdate':
+		echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
+		break;
+	case 'projectdelete': // TODO
+		//needs to remove project from users
+		//delete_file(project_file($filepath, $_GET['projId']))
+		break;
+	
+	case 'task': // TODO
 	break;
 	
-	case 'project':
-		switch($mode){
-			case 'new': echo create_project($filepath, $_GET['usern'], $_GET['projn']);
-		break;
-			case 'read': echo read_project($filepath, $_GET['projId']);
-		break;
-			case 'update': echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
-		break;
-			case 'addup': add_project_to_user($filepath, $_GET['projId'], $_GET['usern']);
-			echo add_user_to_project($filepath, $_GET['projId'], $_GET['usern']);
-		break;
-			case 'removeup': remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
-			echo remove_user_from_project($filepath, $_GET['projId'], $_GET['usern']);
-		break;
-		default: 
-			echo 'ERROR{"Error":"invalid mode ['.$mode.']"}';
-		}
-	break;
-	
-	case 'task':
-	break;
-	
-	case 'risk':
+	case 'risk': // TODO
 	break;
 	
 	default:
