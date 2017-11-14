@@ -23,6 +23,7 @@
   .input{
     width: 90%;
     border-radius: 6px;
+    border-style: none;
     padding: 6px;
   }
 
