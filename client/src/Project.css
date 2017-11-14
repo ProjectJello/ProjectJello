@@ -1,0 +1,14 @@
+.ProjectName {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:focus {
+	color: #4671A3;
+	background-color: white;
+}
