@@ -13,12 +13,12 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-//echo read_json_field('{"name":"Fruits","arr":["oranges","raspberry","apples","raspberry"]}', "name", 1);
+//echo replace_in_json_array('{"name":"Fruits","arr":["oranges","raspberry","apples","raspberry"]}', "arr", '"raspberry"', '"raspberry"grape"');
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
-
+//echo '';
 
 switch($request){
 	case 'userlogin':
@@ -50,10 +50,20 @@ switch($request){
 		echo create_project($filepath, $_GET['usern'], $_GET['projn']);
 		break;
 	case 'projectread':
-		echo read_project($filepath, $_GET['projId']);
+		$t_data = read_project($filepath, $_GET['projId']);
+		$users = read_from_json_array($t_data, "members", 1);
+		
+		$user = read_json_field($t_data, "owner", 1);
+		$t_data = update_json_field($t_data, "owner", read_user($filepath, $user));
+		//ERROR IF USER IS IN PROJECT TWICE
+		foreach($users as $user) {
+			$t_data = replace_in_json_array($t_data, "members", '"'.$user.'"', read_user($filepath, $user));
+		}
+		echo $t_data;
 		break;
 	case 'projectupdate':
 		echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
+		
 		break;
 	case 'projectdelete': // TODO
 		//needs to remove project from users
@@ -77,8 +87,8 @@ switch($request){
 	break;
 	
 	case 'taskdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+		//needs to remove task from project
+		//delete_file(task_file($filepath, $_GET['projId'], $_GET['taskId']))
 		break;
 	
 	case 'risknew':
@@ -94,8 +104,8 @@ switch($request){
 	break;
 	
 	case 'riskdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+		//needs to remove risk from project
+		//delete_file(risk_file($filepath, $_GET['projId'], $_GET['riskId']))
 		break;
 		
 	default:

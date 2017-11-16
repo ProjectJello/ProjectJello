@@ -53,11 +53,43 @@ function add_to_json_aray($json, $feild, $val){
 		
 }
 
+
+function replace_in_json_array($json, $feild, $val, $rep){
+		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
+		$fp = substr($json, 0, $projects);
+		$lp = substr($json, $projects);
+		$o = 1;
+		for($i = 0; $i < strlen($lp); $i++){
+			if($lp[$i] == '[')
+				$o ++;
+			if($lp[$i] == ']')
+				$o --;
+			if($o == 0){
+				$projEnd = $i;
+				break;
+			}
+		}
+		$projp = substr($lp, 0, $projEnd + 1);
+		$lp = substr($lp, $projEnd + 1);
+		$projp = str_replace($val, $rep, $projp);
+		return $fp . $projp .  $lp;
+		
+}
+
 function remove_from_json_array($json, $feild, $val){
 		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
 		$fp = substr($json, 0, $projects);
 		$lp = substr($json, $projects);
-		$projEnd = strpos($lp, ']');
+		for($i = 0; $i < strlen($lp); $i++){
+			if($lp[$i] == '[')
+				$o ++;
+			if($lp[$i] == ']')
+				$o --;
+			if($o == 0){
+				$projEnd = $i;
+				break;
+			}
+		}
 		$projp = substr($lp, 0, $projEnd + 1);
 		$lp = substr($lp, $projEnd + 1);
 		$projp = str_replace($val . ',', '', $projp);
