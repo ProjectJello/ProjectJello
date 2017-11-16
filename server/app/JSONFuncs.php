@@ -38,7 +38,7 @@ function add_to_json_aray($json, $feild, $val){
 		
 }
 
-function remove_from_json_aray($json, $feild, $val){
+function remove_from_json_array($json, $feild, $val){
 		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
 		$fp = substr($json, 0, $projects);
 		$lp = substr($json, $projects);
@@ -50,6 +50,31 @@ function remove_from_json_aray($json, $feild, $val){
 		$projp = str_replace($val, '', $projp);
 		
 		return $fp . $projp .  $lp;
+		
+}
+
+
+function read_from_json_array($json, $feild, $shrink = 0){
+		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
+		$fp = substr($json, 0, $projects);
+		$lp = substr($json, $projects);
+		$projEnd = strpos($lp, ']');
+		$projp = substr($lp, 0, $projEnd + 1);
+		$lp = substr($lp, $projEnd + 1);
+		$l = 0;
+		$arr = [];
+		//echo strlen($projp);
+		for($i = 0; $i < strlen($projp); $i++)
+		{
+			//echo $projp[$i];
+			if($projp[$i] == ','){
+				array_push($arr, substr($projp, $l + $shrink, $i - $shrink));
+				//echo substr($projp, $l + $shrink, $i - $shrink).'<br>';
+				$l = $i + 1;
+			}
+		}
+		
+		return $arr;
 		
 }
 

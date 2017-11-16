@@ -34,4 +34,8 @@ function read_user($filepath, $username){
 		return false;
 	}
 }
+
+function update_user($filepath, $username, $feild, $value){
+	return update_feild_if_exists(user_file($filepath, $username), $feild, $value, 'ERROR{"Error":"User does not exist"}');
+}
 ?>

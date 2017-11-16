@@ -46,16 +46,9 @@ function read_project($filepath, $projectId){
 	}
 }
 
+
 function update_project($filepath, $projectId, $feild, $value){
-	$data = read_file(project_file($filepath, $projectId));
-	if( $data != ''){
-		$data = update_json_field($data, $feild, $value);
-		write_file(project_file($filepath, $projectId), 
-		$data);
-		return $data;
-	}else{
-		return 'ERROR{"Error":"Project does not exist"}';
-	}
+	return update_feild_if_exists(project_file($filepath, $projectId), $feild, $value, 'ERROR{"Error":"Project does not exist"}');
 }
 
 function add_user_to_project($filepath, $projectId, $username){
@@ -93,7 +86,7 @@ function remove_user_from_project($filepath, $projectId, $username){
 	$data = read_file(project_file($filepath, $projectId));
 	if( $data != ''){
 		if(read_file(user_file($filepath, $username)) != ''){
-			$data = remove_from_json_aray($data, "member", '"'.$username.'"');
+			$data = remove_from_json_array($data, "member", '"'.$username.'"');
 			write_file(project_file($filepath, $projectId), $data);
 			return $data;
 		}else{
@@ -108,7 +101,7 @@ function remove_project_from_user($filepath, $projectId, $username){
 	$data = read_file(user_file($filepath, $username));
 	if( $data != ''){
 		if(read_file(project_file($filepath, $projectId)) != ''){
-			$data = remove_from_json_aray($data, "projects", '"'.$projectId.'"');
+			$data = remove_from_json_array($data, "projects", '"'.$projectId.'"');
 			write_file(user_file($filepath, $username), $data);
 			return $data;
 		}else{

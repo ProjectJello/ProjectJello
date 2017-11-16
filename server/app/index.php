@@ -13,21 +13,23 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-//echo remove_from_json_aray('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", '"raspberry"');
+echo read_from_json_array('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", 1)[2];
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
+
+
 switch($request){
-	case 'usernew':
-		echo create_user($filepath, $_GET['usern']);
-		break;
-	case 'userread':
+	case 'userlogin':
 		create_user($filepath, $_GET['usern']);
 		echo read_user($filepath, $_GET['usern']);
 		break;
+	case 'userread':
+		echo read_user($filepath, $_GET['usern']);
+		break;
 	case 'userupdate':
-		// TODO
+		echo update_user($filepath, $_GET['usern'], $_GET['field'], $_GET['val']);
 		break;
 	case 'useraddproject':
 		add_user_to_project($filepath, $_GET['projId'], $_GET['usern']);
@@ -38,6 +40,7 @@ switch($request){
 		remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
 		break;
 	case 'userdelete': //TODO
+		
 		//Needs to remove user from projects
 		//delete_file(user_file($filepath, $_GET['usern']))
 		break;
@@ -69,6 +72,11 @@ switch($request){
 		echo update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
 	break;
 	
+	case 'taskdelete': // TODO
+		//needs to remove project from users
+		//delete_file(project_file($filepath, $_GET['projId']))
+		break;
+	
 	case 'risknew':
 		echo create_risk($filepath, $_GET['projId'], $_GET['riskn'], $_GET['sev']);
 	break;
@@ -81,6 +89,11 @@ switch($request){
 		echo update_risk($filepath, $_GET['projId'], $_GET['riskId'], $_GET['field'], $_GET['val']);
 	break;
 	
+	case 'riskdelete': // TODO
+		//needs to remove project from users
+		//delete_file(project_file($filepath, $_GET['projId']))
+		break;
+		
 	default:
 	echo 'ERROR{"Error":"request not found"}';
 	

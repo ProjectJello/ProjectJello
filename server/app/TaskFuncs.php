@@ -56,16 +56,8 @@ function read_task($filepath, $projectId, $taskId){
 	}
 }
 
-
-function update_task($filepath, $projectId, $taskId,$feild, $value){
-	$data = read_file(task_file($filepath, $projectId, $taskId));
-	if( $data != ''){
-		$data = update_json_field($data, $feild, $value);
-		write_file(task_file($filepath, $projectId, $taskId), 
-		$data);
-		return $data;
-	}else{
-		return 'ERROR{"Error":"Task does not exist"}';
-	}
+function update_task($filepath, $projectId, $taskId, $feild, $value){
+	return update_feild_if_exists(task_file($filepath, $projectId, $taskId), $feild, $value, 'ERROR{"Error":"Task does not exist"}');
 }
+
 ?>
