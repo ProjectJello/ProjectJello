@@ -55,4 +55,17 @@ function read_task($filepath, $projectId, $taskId){
 		echo 'ERROR{"Error":"Task does not exist"}';
 	}
 }
+
+
+function update_task($filepath, $projectId, $taskId,$feild, $value){
+	$data = read_file(task_file($filepath, $projectId, $taskId));
+	if( $data != ''){
+		$data = update_json_field($data, $feild, $value);
+		write_file(task_file($filepath, $projectId, $taskId), 
+		$data);
+		return $data;
+	}else{
+		return 'ERROR{"Error":"Task does not exist"}';
+	}
+}
 ?>

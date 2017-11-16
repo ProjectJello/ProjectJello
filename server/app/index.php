@@ -66,12 +66,20 @@ switch($request){
 		echo read_task($filepath, $_GET['projId'], $_GET['taskId']);
 	break;
 	
+	case 'taskupdate':
+		echo update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
+	break;
+	
 	case 'risknew':
 		echo create_risk($filepath, $_GET['projId'], $_GET['riskn'], $_GET['sev']);
 	break;
 	
 	case 'riskread':
 		echo read_risk($filepath, $_GET['projId'], $_GET['riskId']);
+	break;
+	
+	case 'riskupdate':
+		echo update_risk($filepath, $_GET['projId'], $_GET['riskId'], $_GET['field'], $_GET['val']);
 	break;
 	
 	default:

@@ -53,4 +53,16 @@ function remove_from_json_aray($json, $feild, $val){
 		
 }
 
+
+function update_feild_if_exists($filepath, $feild, $value, $errormsg){
+	$data = read_file($filepath);
+	if($data != ''){
+		$data = update_json_field($data, $feild, $value);
+		write_file($filepath, $data);
+		return $data;
+	}else{
+		return $errormsg;
+	}
+}
+
 ?>
