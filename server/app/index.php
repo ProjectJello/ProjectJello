@@ -13,7 +13,7 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-echo read_from_json_array('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", 1)[2];
+//echo read_from_json_array('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", 1)[2];
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
