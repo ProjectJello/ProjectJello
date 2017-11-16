@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
+    <title>WhitePlus</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Projects-Screen" transform="translate(-208.000000, -147.000000)">
+            <g id="Sidebar">
+                <g id="WhitePlus" transform="translate(209.000000, 148.072454)">
+                    <rect id="Rectangle-3" fill="#FFFFFF" x="14" y="4.95557075" width="2" height="19.822283"></rect>
+                    <rect id="Rectangle-3" fill="#FFFFFF" transform="translate(15.000000, 14.866712) rotate(90.000000) translate(-15.000000, -14.866712) " x="14" y="4.95557075" width="2" height="19.822283"></rect>
+                    <ellipse id="Oval" stroke="#FFFFFF" stroke-width="2" cx="15" cy="14.8667122" rx="15" ry="14.8667122"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
