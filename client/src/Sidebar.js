@@ -5,9 +5,18 @@ import './Sidebar.css';
 import Project from './Project.js';
 class Sidebar extends Component {
 
-  constructor() {
-    super()
-    this.ProjectList = [{ Name: "Proj1" },{ Name: "Proj2" },{ Name: "Proj3" }]
+  constructor(props) {
+    super(props);
+
+    this.showProjectCreator = this.showProjectCreator.bind(this);
+    this.submitNewProject = this.submitNewProject.bind(this);
+    this.changeProjectName = this.changeProjectName.bind(this);
+
+    this.ProjectList = [{ Name: "Proj1" },{ Name: "Proj2" },{ Name: "Proj3" }];
+    this.state = {
+      showProjectCreator: false,
+      projectNameProvided: ''
+    };
   }
 
   render() {
@@ -16,7 +25,15 @@ class Sidebar extends Component {
         <img src={logo} className="App-Logo" alt="Jello" />
         <div className="Project">
             <h1 className="Project-Title">Projects</h1>
-            <a href="#" className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
+            <a href="" onClick={this.showProjectCreator} className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
+            {this.state.showProjectCreator ? (
+                <div>
+                  <input value={this.state.projectNameProvided} onChange={this.changeProjectName} placeholder="Enter Project Name" />
+                  <button onClick={this.submitNewProject}>Create</button>
+                </div>
+              ) : (
+                <span></span>
+            )}
         </div>
 
         <table className="ProjectListTable">
@@ -27,6 +44,33 @@ class Sidebar extends Component {
 
       </div>
     );
+  }
+
+  showProjectCreator(event) {
+    event.preventDefault();
+    this.setState({ showProjectCreator: true });
+  }
+
+  changeProjectName(event) {
+    this.setState({
+      projectNameProvided: event.target.value
+    });
+  }
+
+  submitNewProject(event) {
+    event.preventDefault();
+    fetch(`/api/?request=projectnew&usern=${this.props.user.name}&projn=${this.state.projectNameProvided}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((project) => {
+        console.log(project);
+      });
   }
 
   ProjectClicked(project) {
