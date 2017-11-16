@@ -10,7 +10,6 @@ require 'ProjectFuncs.php';
 //header('Content-Type: application/json');
 //echo json_encode(Array('message', 'Hello World'));
 $filepath = getcwd()."/Data/";
-echo getcwd();
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
