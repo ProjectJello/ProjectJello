@@ -6,7 +6,12 @@ class Tasks extends Component {
     return (
       <div className="Tasks">
       <tr>
-        <td className="Task">{this.props.Task.Name}</td>
+        <td>
+        	<h3>{this.props.Task.Name}</h3>
+        </td>
+      </tr>
+      <tr>
+      	<span>{this.props.Task.Description}</span>
       </tr>
       </div>
     );
