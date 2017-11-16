@@ -4,9 +4,8 @@ import Task from './Task.js';
 import ProjectPlus from './assets/BluePlus.svg';
 
 class TasksView extends Component {
-  constructor() {
-    super()
-    this.TaskList = [{ Name: "Task1", Description: "Desc1"}, { Name: "Task2", Description: "Desc2"}, { Name: "Task3", Description: "Desc3"}]
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -14,11 +13,11 @@ class TasksView extends Component {
       <div className="TasksView">
         <span className="TaskTitle"><b>Tasks</b></span>
         <a href="#" className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
-      	<table className="TasksTable">
-          {this.TaskList.map((item, index) => (
-              <Task Task={item} />
+      	<div className="TasksTable">
+          {this.props.TasksData.map((item, index) => (
+              <Task TaskData={item} />
             ))}
-        </table>
+        </div>
       </div>
     );
   }
