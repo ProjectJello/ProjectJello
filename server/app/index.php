@@ -19,12 +19,12 @@ if(array_key_exists('request',$_GET))
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
-
 switch($request){
 	case 'usernew':
 		echo create_user($filepath, $_GET['usern']);
 		break;
 	case 'userread':
+		create_user($filepath, $_GET['usern']);
 		echo read_user($filepath, $_GET['usern']);
 		break;
 	case 'userupdate':
@@ -62,8 +62,16 @@ switch($request){
 		echo create_task($filepath, $_GET['projId'], $_GET['taskn'], $_GET['usern']);
 	break;
 	
+	case 'taskread':
+		echo read_task($filepath, $_GET['projId'], $_GET['taskId']);
+	break;
+	
 	case 'risknew':
-		echo create_risk($filepath, $_GET['projId'], $_GET['riskn']);
+		echo create_risk($filepath, $_GET['projId'], $_GET['riskn'], $_GET['sev']);
+	break;
+	
+	case 'riskread':
+		echo read_risk($filepath, $_GET['projId'], $_GET['riskId']);
 	break;
 	
 	default:

@@ -44,4 +44,15 @@ function create_task($filepath, $projectId, $taskname, $username){
 	}
 	
 }
+
+
+function read_task($filepath, $projectId, $taskId){
+	$data = read_file(task_file($filepath, $projectId, $taskId), false);
+	if( $data != ''){
+		return $data;
+	}else{
+		//delete_file($filepath . 'projects/project_' . $projectId);
+		echo 'ERROR{"Error":"Task does not exist"}';
+	}
+}
 ?>
