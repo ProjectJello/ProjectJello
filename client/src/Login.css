@@ -1,0 +1,54 @@
+.Login {
+    background-color: #4671a3;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;
+  }
+  
+  .Login-logo {
+    height: 60px;
+  }
+
+  .El-Container {
+    width: 40%;
+  }
+
+  .Spacer{
+    margin: 8px;
+  }
+
+  .input{
+    width: 90%;
+    border-radius: 6px;
+    border-style: none;
+    padding: 6px;
+  }
+
+  .button{
+    border-radius: 3px;
+    padding: 6px;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    width: 90%;
+  }
+  
+  .Login-header {
+    background-color: #222;
+    height: 150px;
+    padding: 20px;
+    color: white;
+  }
+  
+  .Login-intro {
+    font-size: large;
+  }
+  
+  @keyframes Login-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
