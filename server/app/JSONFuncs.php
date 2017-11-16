@@ -25,6 +25,21 @@ function update_json_field($json, $feild, $val){
 		return $fp . $val . $lp;
 }
 
+function read_json_field($json, $feild, $trim = 0){
+		$followfeild = strpos($json, '"'.$feild.'":') + strlen('"'.$feild.'":');
+		$fp = substr($json, 0, $followfeild);
+		$lp = substr($json, $followfeild);
+		if($lp[0] === '['){
+			echo "ERROR";
+			return $json;
+		}
+		
+		$projEnd = leastPos(strpos($lp, ','), strpos($lp, '}'));
+		
+		//$lp = substr($lp, $projEnd);
+		return substr($lp, 0 + $trim, $projEnd - $trim * 2);
+}
+
 function add_to_json_aray($json, $feild, $val){
 		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
 		$fp = substr($json, 0, $projects);
@@ -67,12 +82,14 @@ function read_from_json_array($json, $feild, $shrink = 0){
 		for($i = 0; $i < strlen($projp); $i++)
 		{
 			//echo $projp[$i];
-			if($projp[$i] == ','){
-				array_push($arr, substr($projp, $l + $shrink, $i - $shrink));
+			if($projp[$i] === ','){
+				array_push($arr, substr($projp, $l + $shrink, $i - $shrink - $l - $shrink));
 				//echo substr($projp, $l + $shrink, $i - $shrink).'<br>';
 				$l = $i + 1;
 			}
 		}
+			if(strlen($projp) > 2)
+				array_push($arr, substr($projp, $l + $shrink, strlen($projp) - $shrink - ($l + $shrink) - 1));
 		
 		return $arr;
 		

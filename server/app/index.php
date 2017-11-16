@@ -13,7 +13,7 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-//echo read_from_json_array('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", 1)[2];
+//echo read_json_field('{"name":"Fruits","arr":["oranges","raspberry","apples","raspberry"]}', "name", 1);
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
@@ -60,12 +60,16 @@ switch($request){
 		//delete_file(project_file($filepath, $_GET['projId']))
 		break;
 	
-	case 'tasknew':
-		echo create_task($filepath, $_GET['projId'], $_GET['taskn'], $_GET['usern']);
+	case 'tasknew':		
+		$t_data = create_task($filepath, $_GET['projId'], $_GET['taskn'], $_GET['usern']);
+		$user = read_json_field($t_data, "assignee", 1);
+		echo update_json_field($t_data, "assignee", read_user($filepath, $user));
 	break;
 	
 	case 'taskread':
-		echo read_task($filepath, $_GET['projId'], $_GET['taskId']);
+		$t_data = read_task($filepath, $_GET['projId'], $_GET['taskId']);
+		$user = read_json_field($t_data, "assignee", 1);
+		echo update_json_field($t_data, "assignee", read_user($filepath, $user));
 	break;
 	
 	case 'taskupdate':
