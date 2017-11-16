@@ -1,0 +1,39 @@
+.ProjectInfoView {
+    height: 150px;
+    width: 100%;
+    background: #ededed;
+}
+
+.ProjectInfoHeader {
+    height: 30%;
+    width: 70%;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 5%;
+    background: #ededed;
+    font-style: bold;
+}
+
+.ProjectInfoDescription
+{
+    text-align: left;
+    margin-left: 5%;
+}
+
+.givemespace {
+    background: #ededed;
+    height: 20px;
+    width: 100%
+}
+
+.slidetotheleft {
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.h1{
+    padding: 0px;
+    margin: 0px;
+    color: #4671a3;
+}
