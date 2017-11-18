@@ -12,7 +12,8 @@ function leastPos($a, $b){
 }
 
 function update_json_field($json, $feild, $val){
-		$followfeild = strpos($json, '"'.$feild.'":') + strlen('"'.$feild.'":');
+	$followfeild = strpos($json, '"'.$feild.'":') + strlen('"'.$feild.'":');
+	if($followfeild > -1){
 		$fp = substr($json, 0, $followfeild);
 		$lp = substr($json, $followfeild);
 		if($lp[0] === '['){
@@ -23,6 +24,7 @@ function update_json_field($json, $feild, $val){
 		$projEnd = leastPos(strpos($lp, ','), strpos($lp, '}'));
 		$lp = substr($lp, $projEnd);
 		return $fp . $val . $lp;
+	}
 }
 
 function read_json_field($json, $feild, $trim = 0){
@@ -80,6 +82,8 @@ function remove_from_json_array($json, $feild, $val){
 		$projects = strpos($json, '"'.$feild.'":[') + strlen('"'.$feild.'":[');
 		$fp = substr($json, 0, $projects);
 		$lp = substr($json, $projects);
+		$o = 1;
+		$projEnd = 0;
 		for($i = 0; $i < strlen($lp); $i++){
 			if($lp[$i] == '[')
 				$o ++;
@@ -94,6 +98,7 @@ function remove_from_json_array($json, $feild, $val){
 		$lp = substr($lp, $projEnd + 1);
 		$projp = str_replace($val . ',', '', $projp);
 		$projp = str_replace(', '.$val, '', $projp);
+		$projp = str_replace(','.$val, '', $projp);
 		$projp = str_replace($val, '', $projp);
 		
 		return $fp . $projp .  $lp;
@@ -120,8 +125,9 @@ function read_from_json_array($json, $feild, $shrink = 0){
 				$l = $i + 1;
 			}
 		}
-			if(strlen($projp) > 2)
-				array_push($arr, substr($projp, $l + $shrink, strlen($projp) - $shrink - ($l + $shrink) - 1));
+		
+		if(strlen($projp) > 1 && $projp[0] != ' ')
+			array_push($arr, substr($projp, $l + $shrink, strlen($projp) - $shrink - ($l + $shrink) - 1));
 		
 		return $arr;
 		

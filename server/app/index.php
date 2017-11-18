@@ -13,7 +13,7 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-//echo replace_in_json_array('{"name":"Fruits","arr":["oranges","raspberry","apples","raspberry"]}', "arr", '"raspberry"', '"raspberry"grape"');
+//echo count(read_from_json_array('{"name":"Fruits","arr":[]}', "arr"));
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
@@ -39,10 +39,8 @@ switch($request){
 		remove_user_from_project($filepath, $_GET['projId'], $_GET['usern']);
 		remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
 		break;
-	case 'userdelete': //TODO
-		
-		//Needs to remove user from projects
-		//delete_file(user_file($filepath, $_GET['usern']))
+	case 'userdelete':
+		delete_user($filepath, $_GET['usern']);
 		break;
 		
 	
@@ -65,9 +63,8 @@ switch($request){
 		echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
 		
 		break;
-	case 'projectdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+	case 'projectdelete':
+		delete_project($filepath, $_GET['projId']);
 		break;
 	
 	case 'tasknew':		
@@ -86,9 +83,8 @@ switch($request){
 		echo update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
 	break;
 	
-	case 'taskdelete': // TODO
-		//needs to remove task from project
-		//delete_file(task_file($filepath, $_GET['projId'], $_GET['taskId']))
+	case 'taskdelete':
+		delete_task($filepath, $_GET['projId'], $_GET['taskId']);
 		break;
 	
 	case 'risknew':
@@ -103,9 +99,8 @@ switch($request){
 		echo update_risk($filepath, $_GET['projId'], $_GET['riskId'], $_GET['field'], $_GET['val']);
 	break;
 	
-	case 'riskdelete': // TODO
-		//needs to remove risk from project
-		//delete_file(risk_file($filepath, $_GET['projId'], $_GET['riskId']))
+	case 'riskdelete':
+		delete_risk($filepath, $_GET['projId'], $_GET['riskId']);
 		break;
 		
 	default:
