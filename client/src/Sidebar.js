@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import logo from './assets/JelloLogo.svg';
 import ProjectPlus from './assets/WhitePlus.svg';
 import './Sidebar.css';
-import Project from './Project.js';
+import ProjectListItem from './ProjectListItem.js';
 class Sidebar extends Component {
-
-  constructor() {
-    super()
-    this.ProjectList = [{ Name: "Proj1" },{ Name: "Proj2" },{ Name: "Proj3" }]
-  }
 
   render() {
     return (
@@ -20,17 +15,13 @@ class Sidebar extends Component {
         </div>
 
         <table className="ProjectListTable">
-          {this.ProjectList.map((item, index) => (
-              <Project Project={item} FeedData={this.ProjectClicked} />
+          {this.props.ProjectData.map((item, index) => (
+              <ProjectListItem ProjectData={item} Index={index} OnClick={this.props.OnClick} />
             ))}
         </table>
 
       </div>
     );
-  }
-
-  ProjectClicked(project) {
-    alert("alert clicked" + project.Name);
   }
 
 }

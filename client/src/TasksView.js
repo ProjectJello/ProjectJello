@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 import './TasksView.css';
 import Task from './Task.js';
+import ProjectPlus from './assets/BluePlus.svg';
 
 class TasksView extends Component {
-  constructor() {
-    super()
-    this.TaskList = [{ Name: "Task1" },{ Name: "Task2" },{ Name: "Task3" }]
+  constructor(props) {
+    super(props);
   }
 
   render() {
     return (
       <div className="TasksView">
-      	<table className="TasksTable">
-          {this.TaskList.map((item, index) => (
-              <Task Task={item} />
+        <span className="TaskTitle"><b>Tasks</b></span>
+        <a href="#" className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
+      	<div className="TasksTable">
+          {this.props.TasksData.map((item, index) => (
+              <Task TaskData={item} />
             ))}
-        </table>
+        </div>
       </div>
     );
   }

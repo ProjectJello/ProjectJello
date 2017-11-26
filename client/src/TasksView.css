@@ -1,0 +1,12 @@
+.TaskTitle {
+	font-size: 2em;
+	color: #4671A3;
+}
+
+.TasksView {
+	text-align: left;
+}
+
+.Add-Project.Icon {
+	display: inline-block;
+}
