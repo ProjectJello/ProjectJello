@@ -1,0 +1,20 @@
+/* Open */
+.TaskStatus0{
+	height: 100%;
+	width: 90px;
+	background-color: #4990E2;
+}
+
+/* InProgress */
+.TaskStatus1{
+	height: 100%;
+	width: 90px;
+	background-color: #E49E2A;
+}
+
+/* Closed */
+.TaskStatus2{
+	height: 100%;
+	width: 90px;
+	background-color: #569F06;
+}
