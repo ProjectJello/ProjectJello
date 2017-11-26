@@ -11,7 +11,6 @@ class Sidebar extends Component {
     this.submitNewProject = this.submitNewProject.bind(this);
     this.changeProjectName = this.changeProjectName.bind(this);
 
-    this.ProjectList = [{ Name: "Proj1" },{ Name: "Proj2" },{ Name: "Proj3" }];
     this.state = {
       showProjectCreator: false,
       projectNameProvided: ''
