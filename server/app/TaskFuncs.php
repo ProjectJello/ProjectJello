@@ -60,4 +60,16 @@ function update_task($filepath, $projectId, $taskId, $feild, $value){
 	return update_feild_if_exists(task_file($filepath, $projectId, $taskId), $feild, $value, 'ERROR{"Error":"Task does not exist"}');
 }
 
+
+function delete_task($filepath, $projectId, $taskId){
+	$data = read_file(project_file($filepath, $projectId));
+	if($data != ''){
+		$data = remove_from_json_array($data, "tasks", $taskId);
+		write_file(project_file($filepath, $projectId), $data);
+		delete_file(task_file($filepath, $projectId, $taskId));
+	}else{
+		return 'ERROR{"Error":"Project does not exist"}';
+	}
+}
+
 ?>

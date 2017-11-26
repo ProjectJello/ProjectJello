@@ -38,4 +38,19 @@ function read_user($filepath, $username){
 function update_user($filepath, $username, $feild, $value){
 	return update_feild_if_exists(user_file($filepath, $username), $feild, $value, 'ERROR{"Error":"User does not exist"}');
 }
+
+function delete_user($filepath, $username){
+	$u_data = read_file(user_file($filepath, $username), false);
+	if( $u_data != ''){
+		$projects = read_from_json_array($u_data, "projects");
+		foreach($projects as $project){
+			remove_user_from_project($filepath, $project, $username);
+		}
+		delete_file(user_file($filepath, $username));
+		return true;
+	}else{
+		echo 'ERROR{"Error":"User does not exist"}';
+		return false;
+	}
+}
 ?>

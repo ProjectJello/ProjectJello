@@ -13,12 +13,12 @@ $filepath = getcwd()."/Data/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
-//echo read_from_json_array('{"name":"raspberry", "arr":["oranges", "raspberry", "apples", "raspberry"]}', "arr", 1)[2];
+//echo count(read_from_json_array('{"name":"Fruits","arr":[]}', "arr"));
 //Mode READ, WRITE, DELETE
 $mode = "not found";
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
-
+//echo '';
 
 switch($request){
 	case 'userlogin':
@@ -39,10 +39,8 @@ switch($request){
 		remove_user_from_project($filepath, $_GET['projId'], $_GET['usern']);
 		remove_project_from_user($filepath, $_GET['projId'], $_GET['usern']);
 		break;
-	case 'userdelete': //TODO
-		
-		//Needs to remove user from projects
-		//delete_file(user_file($filepath, $_GET['usern']))
+	case 'userdelete':
+		delete_user($filepath, $_GET['usern']);
 		break;
 		
 	
@@ -50,31 +48,43 @@ switch($request){
 		echo create_project($filepath, $_GET['usern'], $_GET['projn']);
 		break;
 	case 'projectread':
-		echo read_project($filepath, $_GET['projId']);
+		$t_data = read_project($filepath, $_GET['projId']);
+		$users = read_from_json_array($t_data, "members", 1);
+		
+		$user = read_json_field($t_data, "owner", 1);
+		$t_data = update_json_field($t_data, "owner", read_user($filepath, $user));
+		//ERROR IF USER IS IN PROJECT TWICE
+		foreach($users as $user) {
+			$t_data = replace_in_json_array($t_data, "members", '"'.$user.'"', read_user($filepath, $user));
+		}
+		echo $t_data;
 		break;
 	case 'projectupdate':
 		echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
+		
 		break;
-	case 'projectdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+	case 'projectdelete':
+		delete_project($filepath, $_GET['projId']);
 		break;
 	
-	case 'tasknew':
-		echo create_task($filepath, $_GET['projId'], $_GET['taskn'], $_GET['usern']);
+	case 'tasknew':		
+		$t_data = create_task($filepath, $_GET['projId'], $_GET['taskn'], $_GET['usern']);
+		$user = read_json_field($t_data, "assignee", 1);
+		echo update_json_field($t_data, "assignee", read_user($filepath, $user));
 	break;
 	
 	case 'taskread':
-		echo read_task($filepath, $_GET['projId'], $_GET['taskId']);
+		$t_data = read_task($filepath, $_GET['projId'], $_GET['taskId']);
+		$user = read_json_field($t_data, "assignee", 1);
+		echo update_json_field($t_data, "assignee", read_user($filepath, $user));
 	break;
 	
 	case 'taskupdate':
 		echo update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
 	break;
 	
-	case 'taskdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+	case 'taskdelete':
+		delete_task($filepath, $_GET['projId'], $_GET['taskId']);
 		break;
 	
 	case 'risknew':
@@ -89,9 +99,8 @@ switch($request){
 		echo update_risk($filepath, $_GET['projId'], $_GET['riskId'], $_GET['field'], $_GET['val']);
 	break;
 	
-	case 'riskdelete': // TODO
-		//needs to remove project from users
-		//delete_file(project_file($filepath, $_GET['projId']))
+	case 'riskdelete':
+		delete_risk($filepath, $_GET['projId'], $_GET['riskId']);
 		break;
 		
 	default:
