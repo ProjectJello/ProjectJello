@@ -27,7 +27,7 @@ class Sidebar extends Component {
             <h1 className="Project-Title">Projects</h1>
             <a href="" onClick={this.showProjectCreator} className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
             {this.state.showProjectCreator ? (
-                <div>
+                <div className="Project-Creator">
                   <input value={this.state.projectNameProvided} onChange={this.changeProjectName} placeholder="Enter Project Name" />
                   <button onClick={this.submitNewProject}>Create</button>
                 </div>
@@ -59,18 +59,11 @@ class Sidebar extends Component {
 
   submitNewProject(event) {
     event.preventDefault();
-    fetch(`/api/?request=projectnew&usern=${this.props.user.name}&projn=${this.state.projectNameProvided}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json'
-      }
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((project) => {
-        console.log(project);
-      });
+    this.props.onSubmitNewProject(this.state.projectNameProvided);
+    this.setState({
+      showProjectCreator: false,
+      projectNameProvided: ''
+    });
   }
 
   ProjectClicked(project) {
