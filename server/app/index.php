@@ -108,7 +108,7 @@ switch($request){
 		delete_risk($filepath, $_GET['projId'], $_GET['riskId']);
 		break;
 	case 'setpfp':
-		set_pfp($filepath, $filepathpfp, $_POST['usern'], $_FILES["pfp"]);
+		echo set_pfp($filepath, $filepathpfp, $_POST['usern'], $_FILES["pfp"]);
 		break;
 		
 	default:

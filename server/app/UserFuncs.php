@@ -30,8 +30,7 @@ function read_user($filepath, $username){
 	if( $data != ''){
 		return $data;
 	}else{
-		echo 'ERROR{"Error":"User does not exist"}';
-		return false;
+		return 'ERROR{"Error":"User does not exist"}';
 	}
 }
 
@@ -57,6 +56,7 @@ function delete_user($filepath, $username){
 function set_pfp($filepath, $filepathpfp, $username, $file){
 		$extension = pathinfo(basename($file["name"]),PATHINFO_EXTENSION);
 		$isgood = false;
+		$error = "";
 		switch(strtolower($extension)) {
 			case "png":
 			case "jpg":
@@ -67,7 +67,7 @@ function set_pfp($filepath, $filepathpfp, $username, $file){
 				$isgood = false;			
 		}
 		if(!$isgood)
-			echo 'ERROR{"Error":"File upload failed due to improper file type"}';
+			return 'ERROR{"Error":"File upload failed due to improper file type"}';
 		
 		if($isgood){
 			$index = read_file($filepathpfp . 'pfpIndex.txt');
@@ -76,13 +76,17 @@ function set_pfp($filepath, $filepathpfp, $username, $file){
 			write_file($filepathpfp . 'pfpIndex.txt', $index + 1);
 			
 			$targetFP = $filepathpfp . "pfp_".$index."." . $extension;
-			echo $targetFP . '<br>';
-			if(move_uploaded_file($file["tmp_name"], $targetFP)){
-				if(update_user($filepath, $username, "pfp", '"'.substr($targetFP, strpos($targetFP, "/public/"),strlen($targetFP)).'"')[0] != 'E'){
-					echo "Success";
-				}else echo 'ERROR{"Error":"User does not exist"}';
-			}else
-				echo 'ERROR{"Error":"File upload failed for unknown reason"}';
+			//echo $targetFP . '<br>';
+			if(read_user($filepath, $username)[0] != 'E'){
+				if(move_uploaded_file($file["tmp_name"], $targetFP)){
+					return update_user($filepath, $username, "pfp", '"'.substr($targetFP, strpos($targetFP, "/public/"),strlen($targetFP)).'"');
+				}else{ $error = 'ERROR{"Error":"File upload failed for unknown reason"}';}
+					
+			}else{ $error = 'ERROR{"Error":"User does not exist"}';}
+			if(strlen($error) > 1){
+				write_file($filepathpfp . 'pfpIndex.txt', $index);
+				return $error;
+			}
 		}
 }
 ?>
