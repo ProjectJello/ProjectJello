@@ -53,4 +53,36 @@ function delete_user($filepath, $username){
 		return false;
 	}
 }
+
+function set_pfp($filepath, $filepathpfp, $username, $file){
+		$extension = pathinfo(basename($file["name"]),PATHINFO_EXTENSION);
+		$isgood = false;
+		switch(strtolower($extension)) {
+			case "png":
+			case "jpg":
+			case "bmp":
+				$isgood = true;
+				break;
+			default:
+				$isgood = false;			
+		}
+		if(!$isgood)
+			echo 'ERROR{"Error":"File upload failed due to improper file type"}';
+		
+		if($isgood){
+			$index = read_file($filepathpfp . 'pfpIndex.txt');
+			if($index == '')
+				$index = 0;
+			write_file($filepathpfp . 'pfpIndex.txt', $index + 1);
+			
+			$targetFP = $filepathpfp . "pfp_".$index."." . $extension;
+			echo $targetFP . '<br>';
+			if(move_uploaded_file($file["tmp_name"], $targetFP)){
+				if(update_user($filepath, $username, "pfp", '"'.substr($targetFP, strpos($targetFP, "/public/"),strlen($targetFP)).'"')[0] != 'E'){
+					echo "Success";
+				}else echo 'ERROR{"Error":"User does not exist"}';
+			}else
+				echo 'ERROR{"Error":"File upload failed for unknown reason"}';
+		}
+}
 ?>

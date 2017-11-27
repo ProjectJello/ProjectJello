@@ -8,14 +8,19 @@ require 'ProjectFuncs.php';
 
 // Just sending a basic JSON response to confirm all works.
 //header('Content-Type: application/json');
-//echo json_encode(Array('message', 'Hello World'));
+
 $filepath = getcwd()."/Data/";
+
+//Should be the public directory of ProjectJello
+//Needs to be make accessable by Apache in permissions
+$filepathpfp = substr(getcwd(), 0, strpos(getcwd(), "ProjectJello/") + strlen("ProjectJello/"))."client/public/pfps/";
 $request = "not found";
 if(array_key_exists('request',$_GET))
 	$request = $_GET['request'];
+else if(array_key_exists('request',$_POST))
+	$request = $_POST['request'];
 //echo count(read_from_json_array('{"name":"Fruits","arr":[]}', "arr"));
-//Mode READ, WRITE, DELETE
-$mode = "not found";
+
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
 //echo '';
@@ -101,6 +106,9 @@ switch($request){
 	
 	case 'riskdelete':
 		delete_risk($filepath, $_GET['projId'], $_GET['riskId']);
+		break;
+	case 'setpfp':
+		set_pfp($filepath, $filepathpfp, $_POST['usern'], $_FILES["pfp"]);
 		break;
 		
 	default:

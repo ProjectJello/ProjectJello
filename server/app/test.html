@@ -66,6 +66,12 @@ Task ID: <input type="text" name="taskId"><br>
 Risk ID: <input type="text" name="riskId"><br>
 <input type="button" onclick="runQuery()" value="Run" name="Button">
 </form>
+<form action="http://localhost/api" method="post" enctype="multipart/form-data">
+<input hidden=true name="request" value="setpfp">
+Username: <input type="text" name="usern"><br>
+Image: <input type="file" name="pfp"><br>
+<input type="submit">
+</form>
 <h3>Request</h3>
 <div id="request"></div>
 <h3>Response</h3>
