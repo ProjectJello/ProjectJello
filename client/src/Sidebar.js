@@ -11,7 +11,6 @@ class Sidebar extends Component {
     this.submitNewProject = this.submitNewProject.bind(this);
     this.changeProjectName = this.changeProjectName.bind(this);
 
-    this.ProjectList = [{ Name: "Proj1" },{ Name: "Proj2" },{ Name: "Proj3" }];
     this.state = {
       showProjectCreator: false,
       projectNameProvided: ''
@@ -37,7 +36,7 @@ class Sidebar extends Component {
 
         <table className="ProjectListTable">
           {this.props.ProjectData.map((item, index) => (
-              <ProjectListItem ProjectData={item} Index={index} OnClick={this.props.OnClick} />
+              <ProjectListItem IsSelected={this.props.SelectedProject === index} ProjectData={item} Index={index} OnClick={this.props.OnClick} />
             ))}
         </table>
 

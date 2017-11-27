@@ -25,6 +25,10 @@ or if you change some configuration.
 # Initial Environment
 
 * The project will have been set up and running on `localhost:8079`.
+* NOTE: For the API to correctly work you may need to allow Apache to write files to a specific area of the shared folder.
+  This is apparent if you find that you cannot login to Project Jello.
+  You can do this by running the following command on your host system:
+  `chmod -R 0777 server/app/Data`
 
 # Development
 
@@ -33,9 +37,8 @@ or if you change some configuration.
 changes to frontend assets while not using the development server.
 * `test-client.sh`: This script runs the tests for the client code.
 
-NOTE: On UNIX/Linux systems, you may have to add `. ` or `./` before the script name. e.g.
-`./script-name.sh`
-`. script-name.sh`
+NOTE: On UNIX/Linux systems, the shell scripts may not work (I know...). What should work is to just
+copy the contents of the script you want to execute into your shell and execute it there.
 
 # Advanced
 

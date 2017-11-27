@@ -4,7 +4,7 @@ import './ProjectListItem.css';
 class ProjectListItem extends Component {
   render() {
     return (
-      <tr>
+      <tr className={this.props.IsSelected ? 'selectedProjectItem' : '' }>
         <a href="#" onClick={this.clicked.bind(this)}><td className="ProjectListItem">{this.props.ProjectData.name}</td></a>
       </tr>
     );

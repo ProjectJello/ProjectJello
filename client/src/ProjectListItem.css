@@ -12,3 +12,11 @@ a:focus {
 	color: #4671A3;
 	background-color: white;
 }
+
+.selectedProjectItem {
+    background-color: white;
+}
+
+.selectedProjectItem a {
+    color: black;
+}
