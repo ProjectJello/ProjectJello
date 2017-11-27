@@ -1,0 +1,26 @@
+.Risk {
+	height: 110px;
+	border: 0.5px solid #9B9B9B;
+    border-radius: 4px;
+    margin: 10px;
+}
+
+.Risk-Row{
+	display: flex;
+	height: 100%;
+}
+
+.Risk-Name-Description, .Risk-Status {
+	height: 100%;
+	padding-left: 15px;
+	align-self: center;
+	align-items: center;
+}
+
+.flex-fill {
+	flex-grow: 1;
+}
+
+.Risk-Status {
+	width: 75px;
+}
