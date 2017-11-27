@@ -47,7 +47,7 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
         <div className="Sidebar">
-          <Sidebar ProjectData={this.state.ProjectData} OnClick={this.ProjectOnClick.bind(this)} onSubmitNewProject={this.onSubmitNewProject.bind(this)} />
+          <Sidebar ProjectData={this.state.ProjectData} SelectedProject={this.state.currentProjectArrayIndex} OnClick={this.ProjectOnClick.bind(this)} onSubmitNewProject={this.onSubmitNewProject.bind(this)} />
         </div>
         <div className="ProjectView">
           { this.state.currentProjectArrayIndex !== null ? (
