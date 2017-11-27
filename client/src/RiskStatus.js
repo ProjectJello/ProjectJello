@@ -5,12 +5,14 @@ class RiskStatus extends Component {
   render() {
     return (
       <div className={"RiskSeverity" + this.props.Severity}>
-      	<div id="RiskText">
-      		{ this.props.Severity === 0 && 'Addressed' }
-          { this.props.Severity === 1 && 'Low' }
-          { this.props.Severity === 2 && 'Medium' }
-      		{ this.props.Severity === 3 && 'Critical' }
-  		  </div>
+        <div className="select-box" id="RiskText">
+          <select>
+            <option selected={this.props.Severity === 0 && 'selected'}>Addressed</option>
+            <option selected={this.props.Severity === 1 && 'selected' }>Low</option>
+            <option selected={this.props.Severity === 2 && 'selected' }>Medium</option>
+            <option selected={this.props.Severity === 3 && 'selected' }>Critical</option>
+          </select>
+        </div>
         <div id="RiskMarkerText">
           { this.props.Severity === 0 && '✓' }
           { this.props.Severity === 1 && '!' }

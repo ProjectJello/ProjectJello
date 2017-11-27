@@ -5,14 +5,16 @@ class TaskStatus extends Component {
   render() {
     return (
       <div className={"TaskStatus" + this.props.Status}>
-      	<div id="StatusText">
-      		{ this.props.Status === 0 && 'Open' }
-      		{ this.props.Status === 1 && 'In Progress' }
-      		{ this.props.Status === 2 && '✓ Complete' }
-  		  </div>
+      	<div className="select-box"id="StatusText">
+          <select>
+        		<option selected={this.props.Status === 0 && 'selected'}>Open</option>
+        		<option selected={this.props.Status === 1 && 'selected' }>In Progress</option>
+        		<option selected={this.props.Status === 2 && 'selected' }>Complete</option>
+    		  </select>
+        </div>
       	<a href="" id="TaskAssigneeIconContainer"> <img id="TaskAssigneeIcon" src={this.props.Assignee.pfp} /> </a>
       	<div id="TaskHoursContainer">
-      		<span id="TaskHours">{this.props.Hours}h</span>
+      		<input type="number" className="TaskHoursInput" defaultValue={this.props.Hours} /> <span>hours</span>
   		  </div>
       </div>
     );

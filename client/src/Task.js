@@ -9,7 +9,7 @@ class Tasks extends Component {
 	      <div className="Task-Row">
 	      	  <div className="Task-Name-Description flex-fill">
 			      <div className="Task-Name">
-			        <h3>{this.props.TaskData.name}</h3>
+			        <span>{this.props.TaskData.name}</span>
 			      </div>
 			      <div className="Task-Description">
 			      	<span>{this.props.TaskData.description}</span>
