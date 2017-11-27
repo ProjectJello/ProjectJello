@@ -31,10 +31,6 @@ class Dashboard extends Component {
             }
           })
           .then(response => response.json())
-          .then(project => {
-            project.id = projectId;
-            return project;
-          });
         }))
       })
       .then((projects) => {
@@ -76,7 +72,12 @@ class Dashboard extends Component {
         return response.json();
       })
       .then((project) => {
-        console.log(project);
+        this.setState({
+          ProjectData: [
+            ...this.state.ProjectData,
+            project
+          ]
+        })
       });
   }
 
@@ -91,7 +92,15 @@ class Dashboard extends Component {
         return response.json();
       })
       .then(task => {
-        console.log(task);
+        this.setState({
+          ProjectData: [
+            ...this.state.ProjectData.slice(0, this.state.currentProjectArrayIndex - 1),
+            Object.assign(this.state.ProjectData[this.state.currentProjectArrayIndex], {
+              tasks: this.state.ProjectData[this.state.currentProjectArrayIndex].tasks.concat(task.id)
+            }),
+            ...this.state.ProjectData.slice(this.state.currentProjectArrayIndex + 1)
+          ]
+        });
       });
   }
 
