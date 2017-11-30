@@ -2,6 +2,7 @@
 
 /*
 	{
+	"id"	: INT ID	
 	"name" : "RISKNAME"
 	"description" : "DESCRIPTION"
 	"severity" : INT
@@ -29,7 +30,7 @@ function create_risk($filepath, $projectId, $riskname, $severity){
 		$index = read_file(risk_counter_file($filepath, $projectId));
 		if($index == '')
 			$index = 0;
-		$data = '{"name":"'.$riskname.'","description":"", "severity":'.$severity.'}';
+		$data = '{"id":'.$index.',"name":"'.$riskname.'","description":"", "severity":'.$severity.'}';
 		write_file(risk_file($filepath, $projectId, $index), $data);
 		$project = add_to_json_aray($project, 'risks', $index);
 		write_file(project_file($filepath, $projectId), $project);

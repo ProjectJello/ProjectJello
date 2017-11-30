@@ -1,0 +1,9 @@
+---
+
+- name: Data folder will be present for data storage.
+  file:
+    path: "{{ backend }}/Data"
+    state: directory
+    mode: 0777
+  become: yes
+  become_method: sudo

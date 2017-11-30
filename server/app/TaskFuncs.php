@@ -2,6 +2,7 @@
 
 /*
 	{
+	"id"	: INT ID	
 	"name" : "TASKNAME"
 	"assignee" : "USERNAME"
 	"description" : "DESCRIPTION"
@@ -30,7 +31,7 @@ function create_task($filepath, $projectId, $taskname, $username){
 			$index = read_file(task_counter_file($filepath, $projectId));
 			if($index == '')
 				$index = 0;
-			$data = '{"name":"'.$taskname.'","assignee":"'.$username.'","description":"", "hours":0, "status":0}';
+			$data = '{"id":'.$index.', "name":"'.$taskname.'","assignee":"'.$username.'","description":"", "hours":0, "status":0}';
 			write_file(task_file($filepath, $projectId, $index), $data);
 			$project = add_to_json_aray($project, 'tasks', $index);
 			write_file(project_file($filepath, $projectId), $project);
