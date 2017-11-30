@@ -31,7 +31,7 @@ class ProjectView extends Component {
   render() {
     return (
       <div className="ProjectView">
-        <ProjectInfoView/>
+        <ProjectInfoView ProjectInfoData= {this.props.ProjectData}/>
         <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask}/>
         <RisksView RisksData= {this.props.ProjectData.risks}/>
       </div>
