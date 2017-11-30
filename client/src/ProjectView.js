@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ProjectView.css';
 import TasksView from './TasksView.js'
+import ProjectInfoView from './ProjectInfoView.js'
 import RisksView from './RisksView.js'
 
 class ProjectView extends Component {
@@ -30,6 +31,7 @@ class ProjectView extends Component {
   render() {
     return (
       <div className="ProjectView">
+        <ProjectInfoView/>
         <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask}/>
         <RisksView RisksData= {this.props.ProjectData.risks}/>
       </div>
