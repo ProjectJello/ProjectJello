@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>Back End Test</title>
+
+<script>
+function runQuery(){
+	var form = document.getElementById('params');
+	var request = "";
+	for(var i = 0; i < form.length; i ++){
+		request += form.elements[i].name + "=" + form.elements[i].value + "&";
+	}
+	document.getElementById('request').innerHTML = request;
+	
+	document.getElementById('content').innerHTML = httpGet(request);
+}
+
+function httpGet(data){
+	var url = "http://localhost/api?" + data;
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", url, false);
+	xmlHttp.setRequestHeader("Access-Control-Allow-Origin","*");
+	xmlHttp.send(null);
+	return xmlHttp.responseText;
+}
+</script>
+
+</head>
+
+<form id="params" >
+Request: 
+<select name="request">
+	<option value="userlogin">			Login User</option>
+	<option value="userread">			Read User</option>
+	<option value="userupdate">			Update User</option>
+	<option value="useraddproject">		Add User to Project</option>
+	<option value="userremoveproject">	Remove User from Project</option>
+	<option value="userdelete">			Delete User</option>
+	<option value="projectnew">			New Project</option>
+	<option value="projectread">		Read Project</option>
+	<option value="projectupdate">		Update Project</option>
+	<option value="projectdelete">		Delete Project</option>
+	<option value="tasknew">			New Task</option>
+	<option value="taskread">			Read Task</option>
+	<option value="taskupdate">			Update Task</option>
+	<option value="taskdelete">			Delete Task</option>
+	<option value="risknew">			New Risk</option>
+	<option value="riskread">			Read Risk</option>
+	<option value="riskupdate">			Update Risk</option>
+	<option value="riskdelete">			Delete Risk</option>
+</select><br>
+Username: <input type="text" name="usern"><br>
+Project Name: <input type="text" name="projn"><br>
+Task Name: <input type="text" name="taskn"><br>
+Risk Name: <input type="text" name="riskn"><br>
+Field: <input type="text" name="field"><br>
+Value: <input type="text" name="val"><br>
+Severity: 
+<select name="sev">
+	<option value="0">			Done</option>
+	<option value="1">			Low</option>
+	<option value="2">			Medium</option>
+	<option value="3">			High</option>
+</select><br>
+Project ID: <input type="text" name="projId"><br>
+Task ID: <input type="text" name="taskId"><br>
+Risk ID: <input type="text" name="riskId"><br>
+<input type="button" onclick="runQuery()" value="Run" name="Button">
+</form>
+<h3>Request</h3>
+<div id="request"></div>
+<h3>Response</h3>
+<div id="content"></div>
+</html>
