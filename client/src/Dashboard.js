@@ -92,15 +92,13 @@ class Dashboard extends Component {
         return response.json();
       })
       .then(task => {
-        this.setState({
-          ProjectData: [
-            ...this.state.ProjectData.slice(0, this.state.currentProjectArrayIndex - 1),
-            Object.assign(this.state.ProjectData[this.state.currentProjectArrayIndex], {
-              tasks: this.state.ProjectData[this.state.currentProjectArrayIndex].tasks.concat(task.id)
-            }),
-            ...this.state.ProjectData.slice(this.state.currentProjectArrayIndex + 1)
-          ]
-        });
+        let ProjectData = [...this.state.ProjectData];
+        ProjectData[this.state.currentProjectArrayIndex] = Object.assign({}, ProjectData[this.state.currentProjectArrayIndex]);
+        ProjectData[this.state.currentProjectArrayIndex].tasks = [
+          ...ProjectData[this.state.currentProjectArrayIndex].tasks,
+          task.id
+        ];
+        this.setState({ ProjectData });
       });
   }
 

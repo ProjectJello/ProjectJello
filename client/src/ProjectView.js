@@ -39,12 +39,12 @@ class ProjectView extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.ProjectData === this.props.ProjectData) {
+    if (nextProps.ProjectData.tasks === this.props.ProjectData.tasks) {
       return;
     }
 
-    Promise.all(this.props.ProjectData.tasks.map(taskId => {
-      return fetch(`/api/?request=taskread&projId=${this.props.ProjectData.id}&taskId=${taskId}`, {
+    Promise.all(nextProps.ProjectData.tasks.map(taskId => {
+      return fetch(`/api/?request=taskread&projId=${nextProps.ProjectData.id}&taskId=${taskId}`, {
         method: 'GET',
         headers: {
           Accept: 'application/json'
