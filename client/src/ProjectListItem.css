@@ -1,4 +1,4 @@
-.ProjectName {
+.ProjectListItem {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -11,4 +11,12 @@ a {
 a:focus {
 	color: #4671A3;
 	background-color: white;
+}
+
+.selectedProjectItem {
+    background-color: white;
+}
+
+.selectedProjectItem a {
+    color: black;
 }

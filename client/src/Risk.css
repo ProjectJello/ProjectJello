@@ -1,16 +1,16 @@
-.Tasks {
+.Risk {
 	height: 110px;
 	border: 0.5px solid #9B9B9B;
     border-radius: 4px;
     margin: 10px;
 }
 
-.Task-Row{
+.Risk-Row{
 	display: flex;
 	height: 100%;
 }
 
-.Task-Name-Description, .Task-Status {
+.Risk-Name-Description, .Risk-Status {
 	height: 100%;
 	padding-left: 15px;
 	align-self: center;
@@ -21,6 +21,6 @@
 	flex-grow: 1;
 }
 
-.Task-Status {
+.Risk-Status {
 	width: 75px;
 }

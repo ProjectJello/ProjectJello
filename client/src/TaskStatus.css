@@ -1,0 +1,65 @@
+/* Open */
+.TaskStatus0 {
+	height: 100%;
+	width: 100%;
+	background-color: #4990E2;
+	text-align: center;
+}
+
+/* InProgress */
+.TaskStatus1 {
+	height: 100%;
+	width: 100%;
+	background-color: #E49E2A;
+	text-align: center;
+}
+
+/* Closed */
+.TaskStatus2 {
+	height: 100%;
+	width: 100%;
+	background-color: #569F06;
+	text-align: center;
+}
+
+#TaskAssigneeIconContainer {
+	display: block;
+	margin: auto;
+	padding-top: 8px;
+	text-align: center;
+	width: 30px;
+	height: 30px;
+}
+
+#TaskAssigneeIcon {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+#StatusText {
+	color: white;
+	padding-top: 8px;
+	font-size: 12px;
+}
+
+#TaskHoursContainer {
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	margin-top: 8px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: white;
+}
+
+#TaskHoursContainer > span {
+	align-self: center;
+	align-items: center;
+}
+
+#TaskHours {
+	color: #9B9B9B;
+	font-size: 10px;
+}

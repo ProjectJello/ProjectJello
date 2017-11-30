@@ -1,0 +1,43 @@
+/* Complete */
+.RiskSeverity0 {
+	height: 100%;
+	width: 100%;
+	background-color: #569F06;
+	text-align: center;
+}
+
+/* Low */
+.RiskSeverity1 {
+	height: 100%;
+	width: 100%;
+	background-color: #4990E2;
+	text-align: center;
+}
+
+/* Medium */
+.RiskSeverity2 {
+	height: 100%;
+	width: 100%;
+	background-color: #D29229;
+	text-align: center;
+}
+
+/* Critical */
+.RiskSeverity3 {
+	height: 100%;
+	width: 100%;
+	background-color: #AD0A0A;
+	text-align: center;
+}
+
+#RiskText {
+	color: white;
+	padding-top: 20px;
+	font-size: 12px;
+}
+
+#RiskMarkerText {
+	color: white;
+	padding-top: 15px;
+	font-size: 30px;
+}
