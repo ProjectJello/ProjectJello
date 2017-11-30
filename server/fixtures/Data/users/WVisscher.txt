@@ -1,1 +1,1 @@
-{"name":"WVisscher","projects":[],"pfp":"/public/pfps/pfp_5.png"}
+{"name":"WVisscher","projects":[0],"pfp":"/public/pfps/pfp_5.png"}
