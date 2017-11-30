@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './ProjectInfoView.css';
-import Project from './Project.js';
 
 class ProjectInfoView extends Component {
   constructor() {
