@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './TaskStatus.css';
 
 class TaskStatus extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className={"TaskStatus" + this.props.Status}>
@@ -22,9 +25,13 @@ class TaskStatus extends Component {
           </div>
          <div className="select-box" id="AssigneePerson">
            <select>
-              <option selected={this.props.Status === 0 && 'selected'}>Billy</option>
-              <option selected={this.props.Status === 1 && 'selected' }>Bob</option>
-              <option selected={this.props.Status === 2 && 'selected' }>Joe</option>
+            { this.props.UserData.length ? (
+              this.props.UserData.map((item, index) => (
+                  <option>{index}</option>
+              ))
+            ) : (
+                <h2>No Members</h2>
+            )}
             </select>
         	</div>
         </div>

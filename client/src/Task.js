@@ -3,6 +3,9 @@ import './Task.css';
 import TaskStatus from './TaskStatus.js';
 
 class Tasks extends Component {
+  constructor(props) {
+  	super(props);
+  }
   render() {
     return (
       <div className="Tasks">
@@ -16,7 +19,7 @@ class Tasks extends Component {
 			      </div>
 			  </div>
 		      <div className="Task-Status">
-		      	<TaskStatus Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} />
+		      	<TaskStatus Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} UserData= {this.props.UserData} />
 		      </div>
 	      </div>
       </div>

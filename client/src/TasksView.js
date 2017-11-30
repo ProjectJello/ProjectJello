@@ -29,7 +29,7 @@ class TasksView extends Component {
       	<div className="TasksTable">
         { this.props.TasksData.length ? (
           this.props.TasksData.map((item, index) => (
-              <Task TaskData={item} />
+              <Task TaskData={item} UserData= {this.props.UserData}/>
           ))
         ) : (
             <h2>No Tasks</h2>

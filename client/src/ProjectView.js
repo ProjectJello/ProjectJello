@@ -32,7 +32,7 @@ class ProjectView extends Component {
     return (
       <div className="ProjectView">
         <ProjectInfoView/>
-        <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask}/>
+        <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData= {this.props.ProjectData.members}/>
         <RisksView RisksData= {this.props.ProjectData.risks}/>
       </div>
     );
