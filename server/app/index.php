@@ -8,14 +8,30 @@ require 'ProjectFuncs.php';
 
 // Just sending a basic JSON response to confirm all works.
 //header('Content-Type: application/json');
-//echo json_encode(Array('message', 'Hello World'));
+
+function value_get_post($valname){
+	if(array_key_exists($valname,$_GET))
+		return $_GET[$valname];
+	else if(array_key_exists($valname,$_POST))
+		return $_POST[$valname];
+}
+
 $filepath = getcwd()."/Data/";
-$request = "not found";
-if(array_key_exists('request',$_GET))
-	$request = $_GET['request'];
+
+//Should be the public directory of ProjectJello
+//Needs to be make accessable by Apache in permissions
+$filepathpfp = substr(getcwd(), 0, strpos(getcwd(), "ProjectJello/") + strlen("ProjectJello/"))."client/public/pfps/";
+$request = value_get_post('request');
+//$username = value_get_post('usern');
+//$feild = value_get_post('feild');
+//$value = value_get_post('val');
+//$projectId = value_get_post('projId');
+//$taskName = value_get_post('taskn');
+//$taskId = value_get_post('taskId');
+//$taskName = value_get_post('taskn');
+//$taskName = value_get_post('taskn');
 //echo count(read_from_json_array('{"name":"Fruits","arr":[]}', "arr"));
-//Mode READ, WRITE, DELETE
-$mode = "not found";
+
 //if(array_key_exists('mode',$_GET))
 //	$mode = $_GET['mode'];
 //echo '';
@@ -101,6 +117,9 @@ switch($request){
 	
 	case 'riskdelete':
 		delete_risk($filepath, $_GET['projId'], $_GET['riskId']);
+		break;
+	case 'setpfp':
+		echo set_pfp($filepath, $filepathpfp, $_POST['usern'], $_FILES["pfp"]);
 		break;
 		
 	default:
