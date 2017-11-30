@@ -1,2 +1,3 @@
 provision/configure.retry
 static
+server/app/.DS_Store
