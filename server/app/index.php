@@ -9,16 +9,27 @@ require 'ProjectFuncs.php';
 // Just sending a basic JSON response to confirm all works.
 //header('Content-Type: application/json');
 
+function value_get_post($valname){
+	if(array_key_exists($valname,$_GET))
+		return $_GET[$valname];
+	else if(array_key_exists($valname,$_POST))
+		return $_POST[$valname];
+}
+
 $filepath = getcwd()."/Data/";
 
 //Should be the public directory of ProjectJello
 //Needs to be make accessable by Apache in permissions
 $filepathpfp = substr(getcwd(), 0, strpos(getcwd(), "ProjectJello/") + strlen("ProjectJello/"))."client/public/pfps/";
-$request = "not found";
-if(array_key_exists('request',$_GET))
-	$request = $_GET['request'];
-else if(array_key_exists('request',$_POST))
-	$request = $_POST['request'];
+$request = value_get_post('request');
+//$username = value_get_post('usern');
+//$feild = value_get_post('feild');
+//$value = value_get_post('val');
+//$projectId = value_get_post('projId');
+//$taskName = value_get_post('taskn');
+//$taskId = value_get_post('taskId');
+//$taskName = value_get_post('taskn');
+//$taskName = value_get_post('taskn');
 //echo count(read_from_json_array('{"name":"Fruits","arr":[]}', "arr"));
 
 //if(array_key_exists('mode',$_GET))

@@ -2,6 +2,7 @@
 
 /*
   {
+  "id"	: INT ID	
   “name” : “PROJECT NAME”,
   "description" : "DESCRIPTION",
   “owner” : “USERNAME”,
