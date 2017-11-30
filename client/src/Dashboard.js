@@ -95,8 +95,8 @@ class Dashboard extends Component {
         let ProjectData = [...this.state.ProjectData];
         ProjectData[this.state.currentProjectArrayIndex] = Object.assign({}, ProjectData[this.state.currentProjectArrayIndex]);
         ProjectData[this.state.currentProjectArrayIndex].tasks = [
-          ...ProjectData[this.state.currentProjectArrayIndex].tasks,
-          task.id
+          task.id,
+          ...ProjectData[this.state.currentProjectArrayIndex].tasks
         ];
         this.setState({ ProjectData });
       });
