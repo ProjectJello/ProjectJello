@@ -5,7 +5,7 @@ require 'JSONFuncs.php';
 require 'UserFuncs.php';
 require 'ProjectFuncs.php';
 
-
+//print_r(posix_getpwuid(posix_getuid()));
 // Just sending a basic JSON response to confirm all works.
 //header('Content-Type: application/json');
 
@@ -16,7 +16,7 @@ function value_get_post($valname){
 		return $_POST[$valname];
 }
 
-$filepath = getcwd()."/Data/";
+$filepath = "/home/vagrant/Data/";
 
 //Should be the public directory of ProjectJello
 //Needs to be make accessable by Apache in permissions
