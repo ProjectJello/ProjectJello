@@ -16,12 +16,18 @@ class TaskStatus extends Component {
     		  </select>
         </div>
 
-        <div className="TaskLabel">
-          <span>Assignee:</span>
+        <div className="Assignee">
+          <div className="TaskLabel">
+            <span>Assignee:</span>
+          </div>
+         <div className="select-box" id="AssigneePerson">
+           <select>
+              <option selected={this.props.Status === 0 && 'selected'}>Billy</option>
+              <option selected={this.props.Status === 1 && 'selected' }>Bob</option>
+              <option selected={this.props.Status === 2 && 'selected' }>Joe</option>
+            </select>
+        	</div>
         </div>
-        <div className="AssigneePerson">
-          <a href="" id="TaskAssigneeIconContainer"> <img id="TaskAssigneeIcon" src={this.props.Assignee.pfp} /> </a>
-      	</div>
 
         <div className="HoursArea">
           <div className="TaskLabel">

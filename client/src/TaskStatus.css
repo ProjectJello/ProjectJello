@@ -50,8 +50,12 @@
 	display: inline-block;
 }
 
-.AssigneePerson {
+#AssigneePerson {
 	display: inline-block;
+}
+
+.Assignee {
+	padding-top: 10px;
 }
 
 .TaskLabel {
