@@ -34,10 +34,20 @@
 	color: white;
 	padding-top: 20px;
 	font-size: 12px;
+	display: inline-block;
 }
 
 #RiskMarkerText {
 	color: white;
 	padding-top: 15px;
 	font-size: 30px;
+}
+
+.RiskLabel {
+	display: inline-block;
+	color: white;
+	font-size: 12px;
+	margin-right: 3px;
+	text-align: left;
+	align-content: left;
 }
