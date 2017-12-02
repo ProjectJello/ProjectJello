@@ -27,7 +27,7 @@ class TaskStatus extends Component {
            <select>
             { this.props.UserData.length ? (
               this.props.UserData.map((item, index) => (
-                  <option>{index}</option>
+                  <option selected={item.name === this.props.Assignee.name && 'selected'}>{item.name}</option>
               ))
             ) : (
                 <h2>No Members</h2>
