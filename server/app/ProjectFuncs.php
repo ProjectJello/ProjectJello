@@ -34,6 +34,11 @@ function create_project($filepath, $username, $projectname){
 		$user = add_to_json_aray($user, 'projects', $index);
 		write_file(user_file($filepath, $username), $user);
 		write_file($filepath . 'projects/ProjectCounter.txt', $index + 1);
+
+		$users = read_from_json_array($data, "members", 1);
+		foreach($users as $user) {
+			$data = replace_in_json_array($data, "members", '"'.$user.'"', read_user($filepath, $user));
+		}
 		return $data;
 	}else{
 		echo 'ERROR{"Error":"User does not exist"}';
