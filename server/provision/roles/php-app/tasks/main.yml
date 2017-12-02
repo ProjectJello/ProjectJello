@@ -1,5 +1,12 @@
 ---
 
+- name: Existing data folder will be deleted from data storage.
+  file:
+    path: "{{ data_home }}/Data"
+    state: absent
+  become: yes
+  become_method: sudo
+
 - name: Data folder will be present for data storage.
   file:
     path: "{{ data_home }}/Data"
