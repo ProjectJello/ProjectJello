@@ -51,7 +51,7 @@ class Dashboard extends Component {
         </div>
         <div className="ProjectView">
           { this.state.currentProjectArrayIndex !== null ? (
-              <ProjectView ProjectData={this.state.ProjectData[this.state.currentProjectArrayIndex]} onSubmitNewTask={this.onSubmitNewTask.bind(this)}/>
+              <ProjectView ProjectData={this.state.ProjectData[this.state.currentProjectArrayIndex]} onSubmitNewTask={this.onSubmitNewTask.bind(this)} onSubmitNewRisk={this.onSubmitNewRisk.bind(this)} />
             ) : (
               <h1>Nothing to show.</h1>
             )
@@ -98,6 +98,28 @@ class Dashboard extends Component {
           task.id,
           ...ProjectData[this.state.currentProjectArrayIndex].tasks
         ];
+        this.setState({ ProjectData });
+      });
+  }
+
+  onSubmitNewRisk(riskName, severity) {
+    fetch(`/api/?request=risknew&projId=${this.state.ProjectData[this.state.currentProjectArrayIndex].id}&riskn=${riskName}&sev=${severity}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json();
+      })
+      .then(risk => {
+        let ProjectData = [...this.state.ProjectData];
+        ProjectData[this.state.currentProjectArrayIndex] = Object.assign({}, ProjectData[this.state.currentProjectArrayIndex]);
+        ProjectData[this.state.currentProjectArrayIndex].risks = [
+          risk.id,
+          ...ProjectData[this.state.currentProjectArrayIndex].risks
+        ];
+
         this.setState({ ProjectData });
       });
   }
