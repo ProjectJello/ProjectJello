@@ -33,7 +33,8 @@ function read_file($filepath, $generate = false){
 		$file = make_file($filepath, "r", 0777, $generate);
 		if(!$file)
 			return "";
-		$data = fread($file, filesize($filepath));
+		$data = trim(fread($file, filesize($filepath)));
+
 		fclose($file);
 		return $data;
 }
