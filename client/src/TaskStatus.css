@@ -3,7 +3,7 @@
 	height: 100%;
 	width: 100%;
 	background-color: #4990E2;
-	padding-left: 6px;
+	padding: 3px;
 }
 
 /* InProgress */
@@ -11,7 +11,7 @@
 	height: 100%;
 	width: 100%;
 	background-color: #E49E2A;
-	padding-left: 6px;
+	padding: 3px;
 }
 
 /* Closed */
@@ -19,7 +19,7 @@
 	height: 100%;
 	width: 100%;
 	background-color: #569F06;
-	padding-left: 6px;
+	padding: 3px;
 }
 
 #TaskAssigneeIconContainer {

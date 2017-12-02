@@ -19,7 +19,7 @@
 
 .Task-Name-Description, .Task-Status {
 	height: 100%;
-	padding-left: 15px;
+	padding-left: 6px;
 	align-self: center;
 	align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .Task-Status {
-	flex: 0 0 150px;
+	flex: 0 0 160px;
 }
 
 .Task-Description {

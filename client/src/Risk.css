@@ -19,7 +19,7 @@
 
 .Risk-Name-Description, .Risk-Status {
 	height: 100%;
-	padding-left: 15px;
+	padding-left: 3px;
 	align-self: center;
 	align-items: center;
 }
@@ -29,7 +29,7 @@
 }
 
 .Risk-Status {
-	flex: 0 0 150px;
+	flex: 0 0 160px;
 }
 
 .Risk-Description {
