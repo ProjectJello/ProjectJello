@@ -1,1 +1,1 @@
-{"id":3, "name":"Create Project Screen","assignee":"DPratt","description":"", "hours":0, "status":0}
+{"id":3, "name":"Create Project Screen","assignee":"DPratt","description":"", "hours":24, "status":1}
