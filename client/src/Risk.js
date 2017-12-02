@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Risk.css';
 import RiskStatus from './RiskStatus.js';
+import ContentEditable from './ContentEditable.js';
 
 class Risk extends Component {
   render() {
@@ -9,10 +10,10 @@ class Risk extends Component {
  		<div className="Risk-Row">
 	      	<div className="Risk-Name-Description flex-fill">
 			    <div className="Risk-Name">
-			        <span>{this.props.RiskData.name}</span>
+			    	<ContentEditable html={this.props.RiskData.name} onChange={this.taskNameOnChange.bind(this)} />
 			    </div>
 			    <div className="Risk-Description">
-			    	<span>{this.props.RiskData.description}</span>
+			    	<ContentEditable html={this.props.RiskData.description} onChange={this.taskDescriptionOnChange.bind(this)} />
 		    	</div>
 			</div>
 	     	<div className="Risk-Status">
@@ -22,6 +23,20 @@ class Risk extends Component {
       </div>
     );
   }
+
+  //onChangeMethods
+  taskNameOnChange(event) {
+	var newName = event.target.value;
+
+	alert(newName);
+  }
+
+  taskDescriptionOnChange(event) {
+	var newName = event.target.value;
+
+	alert(newName);
+  }
+
 }
 
 export default Risk;
