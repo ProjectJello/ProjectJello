@@ -6,11 +6,11 @@ class RiskStatus extends Component {
     return (
       <div className={"RiskSeverity" + this.props.Severity}>
         <div className="select-box" id="RiskText">
-          <select>
-            <option selected={this.props.Severity === 0 && 'selected'}>Addressed</option>
-            <option selected={this.props.Severity === 1 && 'selected' }>Low</option>
-            <option selected={this.props.Severity === 2 && 'selected' }>Medium</option>
-            <option selected={this.props.Severity === 3 && 'selected' }>Critical</option>
+          <select onChange={this.statusOnChange.bind(this)}>
+            <option selected={this.props.Severity === 0 && 'selected'} value="0">Addressed</option>
+            <option selected={this.props.Severity === 1 && 'selected'} value="1">Low</option>
+            <option selected={this.props.Severity === 2 && 'selected'} value="2">Medium</option>
+            <option selected={this.props.Severity === 3 && 'selected'} value="3">Critical</option>
           </select>
         </div>
         <div id="RiskMarkerText">
@@ -21,6 +21,12 @@ class RiskStatus extends Component {
         </div>
       </div>
     );
+  }
+
+  //onChangeMethods
+  statusOnChange(event) {
+    var newStatusNumber = event.target.value;
+    alert(newStatusNumber);
   }
 }
 
