@@ -1,4 +1,5 @@
 .Dashboard {
   text-align: center;
   display: flex;
+  min-height: 100%;
 }

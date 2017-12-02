@@ -1,6 +1,6 @@
 .Sidebar {  
 	width: 250px;
-	height: 100vh;
+	min-height: 100%;
 	background-color: #4671A3;
 	border: 0px;
 	text-align: center;
