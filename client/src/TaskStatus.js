@@ -12,10 +12,10 @@ class TaskStatus extends Component {
           <span>Status:</span>
         </div>
       	<div className="select-box" id="StatusText">
-          <select>
-        		<option selected={this.props.Status === 0 && 'selected'}>Open</option>
-        		<option selected={this.props.Status === 1 && 'selected' }>In Progress</option>
-        		<option selected={this.props.Status === 2 && 'selected' }>Complete</option>
+          <select onChange={this.statusOnChange.bind(this)}>
+        		<option selected={this.props.Status === 0 && 'selected'} value="0">Open</option>
+        		<option selected={this.props.Status === 1 && 'selected'} value="1">In Progress</option>
+        		<option selected={this.props.Status === 2 && 'selected'} value="2">Complete</option>
     		  </select>
         </div>
 
@@ -24,7 +24,7 @@ class TaskStatus extends Component {
             <span>Assignee:</span>
           </div>
          <div className="select-box" id="AssigneePerson">
-           <select>
+           <select onChange={this.assigneeOnChange.bind(this)}>
             { this.props.UserData.length ? (
               this.props.UserData.map((item, index) => (
                   <option selected={item.name === this.props.Assignee.name && 'selected'}>{item.name}</option>
@@ -41,7 +41,7 @@ class TaskStatus extends Component {
             <span>Man-hours:</span>
           </div>
           <div id="TaskHoursContainer">
-        		<input type="number" className="TaskHoursInput" defaultValue={this.props.Hours} />
+        		<input type="number"  min="0" className="TaskHoursInput" defaultValue={this.props.Hours} onChange={this.hoursOnChange.bind(this)}/>
     		  </div>
           <div className="TaskLabel">
             <span id="TaskHoursLabel">h/week</span>
@@ -51,6 +51,20 @@ class TaskStatus extends Component {
       </div>
     );
   }
+
+//onChangeMethods
+  statusOnChange(event) {
+    var newStatusNumber = event.target.value;
+  }
+
+  assigneeOnChange(event) {
+    var newName = event.target.value;
+  }
+
+  hoursOnChange(event) {
+    var newHours = event.target.value;
+  }
+
 }
 
 export default TaskStatus;
