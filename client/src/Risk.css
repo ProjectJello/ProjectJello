@@ -10,6 +10,13 @@
 	height: 100%;
 }
 
+.Risk-Name {
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 8px;
+	padding-bottom: 3px;
+}
+
 .Risk-Name-Description, .Risk-Status {
 	height: 100%;
 	padding-left: 15px;
@@ -22,5 +29,12 @@
 }
 
 .Risk-Status {
-	width: 75px;
+	flex: 0 0 100px;
+}
+
+.Risk-Description {
+	overflow: scroll;
+	height: 72px;
+	font-size: 16px;
+	color: #4A4A4A;
 }

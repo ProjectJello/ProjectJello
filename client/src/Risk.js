@@ -9,7 +9,7 @@ class Risk extends Component {
  		<div className="Risk-Row">
 	      	<div className="Risk-Name-Description flex-fill">
 			    <div className="Risk-Name">
-			        <h3>{this.props.RiskData.name}</h3>
+			        <span>{this.props.RiskData.name}</span>
 			    </div>
 			    <div className="Risk-Description">
 			    	<span>{this.props.RiskData.description}</span>

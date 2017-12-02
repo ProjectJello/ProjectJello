@@ -2,21 +2,69 @@ import React, { Component } from 'react';
 import './TaskStatus.css';
 
 class TaskStatus extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className={"TaskStatus" + this.props.Status}>
-      	<div id="StatusText">
-      		{ this.props.Status === 0 && 'Open' }
-      		{ this.props.Status === 1 && 'In Progress' }
-      		{ this.props.Status === 2 && '✓ Complete' }
-  		  </div>
-      	<a href="" id="TaskAssigneeIconContainer"> <img id="TaskAssigneeIcon" src={this.props.Assignee.pfp} /> </a>
-      	<div id="TaskHoursContainer">
-      		<span id="TaskHours">{this.props.Hours}h</span>
-  		  </div>
+        <div className="TaskLabel">
+          <span>Status:</span>
+        </div>
+      	<div className="select-box" id="StatusText">
+          <select onChange={this.statusOnChange.bind(this)}>
+        		<option selected={this.props.Status === 0 && 'selected'} value="0">Open</option>
+        		<option selected={this.props.Status === 1 && 'selected'} value="1">In Progress</option>
+        		<option selected={this.props.Status === 2 && 'selected'} value="2">Complete</option>
+    		  </select>
+        </div>
+
+        <div className="Assignee">
+          <div className="TaskLabel">
+            <span>Assignee:</span>
+          </div>
+         <div className="select-box" id="AssigneePerson">
+           <select onChange={this.assigneeOnChange.bind(this)}>
+            { this.props.UserData.length ? (
+              this.props.UserData.map((item, index) => (
+                  <option selected={item.name === this.props.Assignee.name && 'selected'}>{item.name}</option>
+              ))
+            ) : (
+                <h2>No Members</h2>
+            )}
+            </select>
+        	</div>
+        </div>
+
+        <div className="HoursArea">
+          <div className="TaskLabel">
+            <span>Man-hours:</span>
+          </div>
+          <div id="TaskHoursContainer">
+        		<input type="number"  min="0" className="TaskHoursInput" defaultValue={this.props.Hours} onChange={this.hoursOnChange.bind(this)}/>
+    		  </div>
+          <div className="TaskLabel">
+            <span id="TaskHoursLabel">h/week</span>
+          </div>
+        </div>
+        
       </div>
     );
   }
+
+//onChangeMethods
+  statusOnChange(event) {
+    var newStatusNumber = event.target.value;
+  }
+
+  assigneeOnChange(event) {
+    var newName = event.target.value;
+  }
+
+  hoursOnChange(event) {
+    var newHours = event.target.value;
+  }
+
 }
 
 export default TaskStatus;
