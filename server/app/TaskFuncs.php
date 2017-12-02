@@ -2,6 +2,7 @@
 
 /*
 	{
+	"id"	: INT ID	
 	"name" : "TASKNAME"
 	"assignee" : "USERNAME"
 	"description" : "DESCRIPTION"
