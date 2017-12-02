@@ -2,8 +2,17 @@
 
 - name: Data folder will be present for data storage.
   file:
-    path: "{{ backend }}/Data"
+    path: "{{ data_home }}/Data"
     state: directory
+    mode: 0777
+  become: yes
+  become_method: sudo
+
+- name: Fixture data will be present in data folder.
+  copy:
+    src: "/vagrant/server/fixtures/"
+    dest: "{{ data_home }}/Data"
+    directory_mode: 0777
     mode: 0777
   become: yes
   become_method: sudo
