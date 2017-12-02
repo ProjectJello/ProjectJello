@@ -9,23 +9,12 @@ class ProjectView extends Component {
   	super(props);
 
     this.state = {
-      TasksData: []
+      TasksData: [],
+      RisksData: []
     };
 
-    Promise.all(this.props.ProjectData.tasks.map(taskId => {
-      return fetch(`/api/?request=taskread&projId=${this.props.ProjectData.id}&taskId=${taskId}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
-      })
-      .then(response => response.json());
-    }))
-      .then((tasks) => {
-        this.setState({
-          TasksData: tasks
-        });
-      });
+    this.getAndSetTasks(this.props.ProjectData.id, this.props.ProjectData.tasks);
+    this.getAndSetRisks(this.props.ProjectData.id, this.props.ProjectData.risks);
   }
 
   render() {
@@ -33,30 +22,53 @@ class ProjectView extends Component {
       <div className="ProjectView">
         <ProjectInfoView/>
         <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask}/>
-        <RisksView RisksData= {this.props.ProjectData.risks}/>
+        <RisksView RisksData= {this.state.RisksData} />
       </div>
     );
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.ProjectData.tasks === this.props.ProjectData.tasks) {
-      return;
+    if (nextProps.ProjectData.tasks !== this.props.ProjectData.tasks) {
+      this.getAndSetTasks(nextProps.ProjectData.id, nextProps.ProjectData.tasks);
     }
 
-    Promise.all(nextProps.ProjectData.tasks.map(taskId => {
-      return fetch(`/api/?request=taskread&projId=${nextProps.ProjectData.id}&taskId=${taskId}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json'
-        }
-      })
-      .then(response => response.json());
-    }))
-      .then((tasks) => {
-        this.setState({
-          TasksData: tasks
+    if (nextProps.ProjectData.risks !== this.props.ProjectData.risks) {
+      this.getAndSetRisks(nextProps.ProjectData.id, nextProps.ProjectData.risks);
+    }  
+  }
+
+  getAndSetTasks(projectId, taskIds) {
+      Promise.all(taskIds.map(taskId => {
+        return fetch(`/api/?request=taskread&projId=${projectId}&taskId=${taskId}`, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          }
+        })
+        .then(response => response.json());
+      }))
+        .then((tasks) => {
+          this.setState({
+            TasksData: tasks
+          });
+        });  
+  }
+
+  getAndSetRisks(projectId, riskIds) {
+      Promise.all(riskIds.map(riskId => {
+        return fetch(`/api/?request=riskread&projId=${projectId}&riskId=${riskId}`, {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          }
+        })
+        .then(response => response.json())
+      }))
+        .then((risks) => {
+          this.setState({
+            RisksData: risks
+          })
         });
-      });    
   }
 }
 
