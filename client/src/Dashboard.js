@@ -51,7 +51,7 @@ class Dashboard extends Component {
         </div>
         <div className="ProjectView">
           { this.state.currentProjectArrayIndex !== null ? (
-              <ProjectView ProjectData={this.state.ProjectData[this.state.currentProjectArrayIndex]} onSubmitNewTask={this.onSubmitNewTask.bind(this)} onSubmitNewRisk={this.onSubmitNewRisk.bind(this)} />
+              <ProjectView ProjectData={this.state.ProjectData[this.state.currentProjectArrayIndex]} onSubmitNewTask={this.onSubmitNewTask.bind(this)} onSubmitNewRisk={this.onSubmitNewRisk.bind(this)} onProjectNameChange={this.changeProjectName.bind(this)} onProjectDescriptionChange={this.changeProjectDescription.bind(this)} />
             ) : (
               <h1>Nothing to show.</h1>
             )
@@ -128,6 +128,50 @@ class Dashboard extends Component {
     this.setState({
       currentProjectArrayIndex: index
     });
+  }
+
+  changeProjectName(projectId, newName) {
+    fetch(`/api/?request=projectupdate&projId=${projectId}&field=name&val=${newName}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(project => {
+        let itemIndex = this.state.ProjectData.findIndex(project => project.id === projectId);
+        this.setState({
+          ProjectData: this.state.ProjectData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return project;
+            }
+          })
+        });       
+      });  
+  }
+
+  changeProjectDescription(projectId, newDescription) {
+    fetch(`/api/?request=projectupdate&projId=${projectId}&field=description&val=${newDescription}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(project => {
+        let itemIndex = this.state.ProjectData.findIndex(project => project.id === projectId);
+        this.setState({
+          ProjectData: this.state.ProjectData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return project;
+            }
+          })
+        });       
+      }); 
   }
 }
 

@@ -21,7 +21,7 @@ class ProjectView extends Component {
     return (
       <div>
         <div className="ProjectView">
-          <ProjectInfoView ProjectInfoData= {this.props.ProjectData}/>
+          <ProjectInfoView ProjectInfoData= {this.props.ProjectData} onProjectNameChange={this.projectNameChange.bind(this)} onProjectDescriptionChange={this.projectDescriptionChange.bind(this)} />
         </div>
         <div className="TaskAndRiskView">        
           <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)} onChangeHours={this.hoursChange.bind(this)} onChangeTaskName={this.taskNameChange.bind(this)} onChangeTaskDescription={this.taskDescriptionChange.bind(this)}/>
@@ -183,6 +183,14 @@ class ProjectView extends Component {
           })
         });       
       });     
+  }
+
+  projectNameChange(newName) {
+    this.props.onProjectNameChange(this.props.ProjectData.id, newName);
+  }
+
+  projectDescriptionChange(newDescription) {
+    this.props.onProjectDescriptionChange(this.props.ProjectData.id, newDescription); 
   }
 }
 
