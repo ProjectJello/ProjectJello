@@ -24,7 +24,7 @@ class ProjectView extends Component {
           <ProjectInfoView ProjectInfoData= {this.props.ProjectData}/>
         </div>
         <div className="TaskAndRiskView">        
-          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)}/>
+          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)} onChangeHours={this.hoursChange.bind(this)}/>
           <RisksView RisksData= {this.state.RisksData} onSubmitNewRisk={this.props.onSubmitNewRisk} />
         </div>
       </div>
@@ -117,6 +117,28 @@ class ProjectView extends Component {
           })
         });       
       });
+  }
+
+  hoursChange(taskId, newHours) {
+    fetch(`/api/?request=taskupdate&projId=${this.props.ProjectData.id}&taskId=${taskId}&field=hours&val=${newHours}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(task => {
+        let itemIndex = this.state.TasksData.findIndex(task => task.id === taskId);
+        this.setState({
+          TasksData: this.state.TasksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return task;
+            }
+          })
+        });       
+      });    
   }
 }
 
