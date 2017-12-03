@@ -15,7 +15,7 @@ class Tasks extends Component {
 	      	  	<div className="Task-Name">
 			      <ContentEditable html={this.props.TaskData.name} onChange={this.taskNameOnChange.bind(this)} /> 
 			    </div>  
-			    <div className="Task-Name">
+			    <div className="Task-Description">
 			      <ContentEditable html={this.props.TaskData.description} onChange={this.taskDescriptionOnChange.bind(this)} />
 			    </div> 
 			  </div>
