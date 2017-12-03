@@ -12,6 +12,10 @@
 
 
 
+function user_dir($filepath) {
+	return $filepath . 'users';
+}
+
 function user_file($filepath, $username){
 	return $filepath . 'users/' . $username . '.txt';
 }
@@ -32,6 +36,21 @@ function read_user($filepath, $username){
 	}else{
 		return 'ERROR{"Error":"User does not exist"}';
 	}
+}
+
+function read_users($filepath) {
+	$users = "[";
+	$handle = opendir(user_dir($filepath));
+	while (false !== ($entry = readdir($handle))) {
+		if ($entry != '.' && $entry != '..') {
+	    	$users .= read_file(user_file($filepath, explode(".", $entry)[0]), false) . ",";
+		}
+	}
+
+	$users = substr($users, 0, -1);
+	$users .= "]";
+
+	return $users;
 }
 
 function update_user($filepath, $username, $feild, $value){

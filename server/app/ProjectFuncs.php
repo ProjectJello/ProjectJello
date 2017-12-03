@@ -23,13 +23,29 @@ function project_file($filepath, $projectId){
 
 
 
-function create_project($filepath, $username, $projectname){
+function create_project($filepath, $username, $projectname, $projectmembers){
+	$formatprojectmembers = [];
+	$members = [];
+	if ($projectmembers) {
+		$members = explode(',', $projectmembers);
+	}
+
+	array_push($members, $username);
+	$members = array_unique($members);
+
+
+	foreach($members as $member) {
+		array_push($formatprojectmembers, '"' . $member . '"');
+	}
+
+	$formatprojectmembers = implode(",", $formatprojectmembers);
+
 	$user = read_user($filepath, $username);
 	if($user){
 		$index = read_file($filepath . 'projects/ProjectCounter.txt');
 		if($index == '')
 			$index = 0;
-		$data = '{"id":'.$index.',"name":"'.$projectname.'","owner":"'.$username.'","description":"","members":["'.$username.'"],"tasks":[],"risks":[]}';
+		$data = '{"id":'.$index.',"name":"'.$projectname.'","owner":"'.$username.'","description":"","members":[' . $formatprojectmembers . '],"tasks":[],"risks":[]}';
 		write_file(project_file($filepath, $index), $data);
 		$user = add_to_json_aray($user, 'projects', $index);
 		write_file(user_file($filepath, $username), $user);

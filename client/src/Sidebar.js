@@ -12,8 +12,10 @@ class Sidebar extends Component {
     this.changeProjectName = this.changeProjectName.bind(this);
 
     this.state = {
+      AllUsersData: [],
       showProjectCreator: false,
-      projectNameProvided: ''
+      projectNameProvided: '',
+      projectMembersProvided: []
     };
   }
 
@@ -27,10 +29,18 @@ class Sidebar extends Component {
             {this.state.showProjectCreator ? (
                 <div className="Project-Creator">
                   <input value={this.state.projectNameProvided} onChange={this.changeProjectName} placeholder="Enter Project Name" />
+                  <div>
+                    Select Members:
+                    {this.state.AllUsersData.map(user => (
+                      <div>
+                        <input type="checkbox" name={user.name} onChange={this.changeMembers.bind(this)} /> { user.name }
+                      </div>
+                    ))}
+                  </div>
                   <button onClick={this.submitNewProject}>Create</button>
                 </div>
               ) : (
-                <span></span>
+                <div></div>
             )}
         </div>
 
@@ -46,7 +56,20 @@ class Sidebar extends Component {
 
   showProjectCreator(event) {
     event.preventDefault();
-    this.setState({ showProjectCreator: true });
+
+    fetch(`/api/?request=userreadall`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json'
+      }
+    })
+      .then(response => response.json())
+      .then((users) => {
+        this.setState({
+          AllUsersData: users,
+          showProjectCreator: true
+        });
+      });
   }
 
   changeProjectName(event) {
@@ -55,12 +78,28 @@ class Sidebar extends Component {
     });
   }
 
+  changeMembers(event) {
+    if (event.target.checked) {
+      this.setState({
+        projectMembersProvided: [
+          ...this.state.projectMembersProvided,
+          event.target.name
+        ]
+      });
+    } else {
+      this.setState({
+        projectMembersProvided: this.state.projectMembersProvided.filter(member => member != event.target.name)
+      });
+    }
+  }
+
   submitNewProject(event) {
     event.preventDefault();
-    this.props.onSubmitNewProject(this.state.projectNameProvided);
+    this.props.onSubmitNewProject(this.state.projectNameProvided, this.state.projectMembersProvided);
     this.setState({
       showProjectCreator: false,
-      projectNameProvided: ''
+      projectNameProvided: '',
+      projectMembersProvided: []
     });
   }
 

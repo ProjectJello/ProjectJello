@@ -41,6 +41,9 @@ switch($request){
 		create_user($filepath, $_GET['usern']);
 		echo read_user($filepath, $_GET['usern']);
 		break;
+	case 'userreadall':
+		echo read_users($filepath);
+		break;
 	case 'userread':
 		echo read_user($filepath, $_GET['usern']);
 		break;
@@ -61,7 +64,7 @@ switch($request){
 		
 	
 	case 'projectnew':
-		echo create_project($filepath, $_GET['usern'], $_GET['projn']);
+		echo create_project($filepath, $_GET['usern'], $_GET['projn'], $_GET['projmembers']);
 		break;
 	case 'projectread':
 		$t_data = read_project($filepath, $_GET['projId']);

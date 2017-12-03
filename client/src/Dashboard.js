@@ -61,8 +61,8 @@ class Dashboard extends Component {
     );
   }
 
-  onSubmitNewProject(projectName) {
-    fetch(`/api/?request=projectnew&usern=${this.user.name}&projn=${projectName}`, {
+  onSubmitNewProject(projectName, projectMembers) {
+    fetch(`/api/?request=projectnew&usern=${this.user.name}&projn=${projectName}&projmembers=${projectMembers}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json'
