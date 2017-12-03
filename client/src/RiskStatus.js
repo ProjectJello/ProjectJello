@@ -17,10 +17,10 @@ class RiskStatus extends Component {
           </select>
         </div>
         <div id="RiskMarkerText">
-          { this.props.Severity === 0 && '✓' }
-          { this.props.Severity === 1 && '!' }
-          { this.props.Severity === 2 && '!!' }
-          { this.props.Severity === 3 && '!!!' }
+          { parseInt(this.props.Severity, 10) === 0 && '✓' }
+          { parseInt(this.props.Severity, 10) === 1 && '!' }
+          { parseInt(this.props.Severity, 10) === 2 && '!!' }
+          { parseInt(this.props.Severity, 10) === 3 && '!!!' }
         </div>
       </div>
     );
