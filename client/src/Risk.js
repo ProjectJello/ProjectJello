@@ -10,10 +10,10 @@ class Risk extends Component {
  		<div className="Risk-Row">
 	      	<div className="Risk-Name-Description flex-fill">
 			    <div className="Risk-Name">
-			    	<ContentEditable html={this.props.RiskData.name} onChange={this.taskNameOnChange.bind(this)} />
+			    	<ContentEditable html={this.props.RiskData.name} onChange={this.riskNameOnChange.bind(this)} />
 			    </div>
 			    <div className="Risk-Description">
-			    	<ContentEditable html={this.props.RiskData.description} onChange={this.taskDescriptionOnChange.bind(this)} />
+			    	<ContentEditable html={this.props.RiskData.description} onChange={this.riskDescriptionOnChange.bind(this)} />
 		    	</div>
 			</div>
 	     	<div className="Risk-Status">
@@ -25,16 +25,14 @@ class Risk extends Component {
   }
 
   //onChangeMethods
-  taskNameOnChange(event) {
+  riskNameOnChange(event) {
 	var newName = event.target.value;
-
-	alert(newName);
+	this.props.onRiskNameChange(this.props.RiskData.id, newName);
   }
 
-  taskDescriptionOnChange(event) {
-	var newName = event.target.value;
-
-	alert(newName);
+  riskDescriptionOnChange(event) {
+	var newDescription = event.target.value;
+	this.props.onRiskDescriptionChange(this.props.RiskData.id, newDescription);
   }
 
   onRiskStatusChange(newSeverity) {

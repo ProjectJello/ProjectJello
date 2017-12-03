@@ -25,7 +25,7 @@ class ProjectView extends Component {
         </div>
         <div className="TaskAndRiskView">        
           <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)} onChangeHours={this.hoursChange.bind(this)} onChangeTaskName={this.taskNameChange.bind(this)} onChangeTaskDescription={this.taskDescriptionChange.bind(this)}/>
-          <RisksView RisksData= {this.state.RisksData} onSubmitNewRisk={this.props.onSubmitNewRisk} onRiskStatusChange={this.riskStatusChange.bind(this)}/>
+          <RisksView RisksData= {this.state.RisksData} onSubmitNewRisk={this.props.onSubmitNewRisk} onRiskStatusChange={this.riskStatusChange.bind(this)} onRiskNameChange={this.riskNameChange.bind(this)} onRiskDescriptionChange={this.riskDescriptionChange.bind(this)}/>
         </div>
       </div>
     );
@@ -205,6 +205,50 @@ class ProjectView extends Component {
           })
         });       
       });     
+  }
+
+  riskNameChange(riskId, newName) {
+    fetch(`/api/?request=riskupdate&projId=${this.props.ProjectData.id}&riskId=${riskId}&field=name&val=${newName}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(risk => {
+        let itemIndex = this.state.RisksData.findIndex(risk => risk.id === riskId);
+        this.setState({
+          RisksData: this.state.RisksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return risk;
+            }
+          })
+        });       
+      });   
+  }
+
+  riskDescriptionChange(riskId, newDescription) {
+    fetch(`/api/?request=riskupdate&projId=${this.props.ProjectData.id}&riskId=${riskId}&field=description&val=${newDescription}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(risk => {
+        let itemIndex = this.state.RisksData.findIndex(risk => risk.id === riskId);
+        this.setState({
+          RisksData: this.state.RisksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return risk;
+            }
+          })
+        });       
+      });   
   }
 
   projectNameChange(newName) {
