@@ -35,7 +35,7 @@ class RisksView extends Component {
         )}
       	<div className="RisksTable">
           {this.props.RisksData.map((item, index) => (
-              <Risk RiskData={item} />
+              <Risk RiskData={item} onRiskStatusChange={this.props.onRiskStatusChange.bind(this)} />
             ))}
         </div>
       </div>
@@ -69,6 +69,10 @@ class RisksView extends Component {
       riskNameProvided: '',
       riskSeverityProvided: 0
     });
+  }
+
+  onRiskStatusChange(riskId, newSeverity) {
+    this.props.onRiskStatusChange(riskId, newSeverity);
   }
 }
 

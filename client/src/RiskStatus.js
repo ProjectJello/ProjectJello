@@ -6,7 +6,7 @@ class RiskStatus extends Component {
     return (
       <div className={"RiskSeverity" + this.props.Severity}>
         <div className="RiskLabel">
-          <span>Status:</span>
+          <span>Severity:</span>
         </div>
         <div className="select-box" id="RiskText">
           <select onChange={this.statusOnChange.bind(this)}>
@@ -28,8 +28,8 @@ class RiskStatus extends Component {
 
   //onChangeMethods
   statusOnChange(event) {
-    var newStatusNumber = event.target.value;
-    alert(newStatusNumber);
+    var newRiskSeverity = event.target.value;
+    this.props.onRiskStatusChange(newRiskSeverity);
   }
 }
 

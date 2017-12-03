@@ -17,7 +17,7 @@ class Risk extends Component {
 		    	</div>
 			</div>
 	     	<div className="Risk-Status">
-		      <RiskStatus Severity={this.props.RiskData.severity} />
+		      <RiskStatus Severity={this.props.RiskData.severity} onRiskStatusChange={this.onRiskStatusChange.bind(this)}/>
 		    </div>
     	</div>
       </div>
@@ -35,6 +35,10 @@ class Risk extends Component {
 	var newName = event.target.value;
 
 	alert(newName);
+  }
+
+  onRiskStatusChange(newSeverity) {
+    this.props.onRiskStatusChange(this.props.RiskData.id, newSeverity);
   }
 
 }

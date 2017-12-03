@@ -54,6 +54,10 @@ function read_risk($filepath, $projectId, $riskId){
 
 
 function update_risk($filepath, $projectId, $riskId, $feild, $value){
+	if (is_string($value)) {
+		$value = '"'.$value.'"';
+	}
+
 	return update_feild_if_exists(risk_file($filepath, $projectId, $riskId), $feild, $value, 'ERROR{"Error":"Risk does not exist"}');
 }
 
