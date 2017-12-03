@@ -42,4 +42,13 @@
 
 .Project-Creator {
 	padding: 8px;
+	padding-left: 25px;
+}
+
+.Project-Creator input[type="text"] {
+	margin-bottom: 8px;
+}
+
+.Project-Creator button {
+	margin-top: 8px;
 }

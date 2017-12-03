@@ -27,17 +27,21 @@ class Sidebar extends Component {
             <h1 className="Project-Title">Projects</h1>
             <a href="" onClick={this.showProjectCreator} className="Add-Project-Icon"> <img src={ProjectPlus} alt="Plus" id="WhitePlus" /> </a>
             {this.state.showProjectCreator ? (
-                <div className="Project-Creator">
-                  <input value={this.state.projectNameProvided} onChange={this.changeProjectName} placeholder="Enter Project Name" />
-                  <div>
-                    Select Members:
-                    {this.state.AllUsersData.map(user => (
-                      <div>
-                        <input type="checkbox" name={user.name} onChange={this.changeMembers.bind(this)} /> { user.name }
-                      </div>
-                    ))}
+                <div>
+                  <hr/>
+                  <div className="Project-Creator">
+                    <input type="text" value={this.state.projectNameProvided} onChange={this.changeProjectName} placeholder="Enter Project Name" />
+                    <div>
+                      Select Members:
+                      {this.state.AllUsersData.map(user => (
+                        <div>
+                          <input type="checkbox" name={user.name} onChange={this.changeMembers.bind(this)} /> { user.name }
+                        </div>
+                      ))}
+                    </div>
+                    <button onClick={this.submitNewProject}>Create</button>
                   </div>
-                  <button onClick={this.submitNewProject}>Create</button>
+                  <hr/>
                 </div>
               ) : (
                 <div></div>
