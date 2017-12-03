@@ -99,7 +99,9 @@ switch($request){
 	break;
 	
 	case 'taskupdate':
-		echo update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
+		$t_data= update_task($filepath, $_GET['projId'], $_GET['taskId'], $_GET['field'], $_GET['val']);
+		$user = read_json_field($t_data, "assignee", 1);
+		echo update_json_field($t_data, "assignee", read_user($filepath, $user));
 	break;
 	
 	case 'taskdelete':

@@ -15,12 +15,12 @@ class Tasks extends Component {
 	      	  	<div className="Task-Name">
 			      <ContentEditable html={this.props.TaskData.name} onChange={this.taskNameOnChange.bind(this)} /> 
 			    </div>  
-			    <div className="Task-Name">
+			    <div className="Task-Description">
 			      <ContentEditable html={this.props.TaskData.description} onChange={this.taskDescriptionOnChange.bind(this)} />
 			    </div> 
 			  </div>
 		      <div className="Task-Status">
-		      	<TaskStatus Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} UserData= {this.props.UserData} />
+		      	<TaskStatus TaskId={this.props.TaskData.id} Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} UserData= {this.props.UserData} onStatusChange={this.changeStatus.bind(this)} onAssigneeChange={this.changeAssignee.bind(this)} />
 		      </div>
 	      </div>
       </div>
@@ -38,6 +38,14 @@ class Tasks extends Component {
 	var newName = event.target.value;
 
 	alert(newName);
+  }
+
+  changeStatus(taskId, newStatus) {
+    this.props.onStatusChange(taskId, newStatus);
+  }
+
+  changeAssignee(taskId, newName) {
+    this.props.onAssigneeChange(taskId, newName);
   }
 }
 

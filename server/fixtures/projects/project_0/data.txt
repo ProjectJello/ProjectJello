@@ -1,1 +1,1 @@
-{"id":0,"name":"Project Jello","owner":"WVisscher","description":"","members":["DPratt","WSilloway","GScoppino","JChamberlain","WVisscher"],"tasks":[4,3,2,1,0],"risks":[2,1,0]}
+{"id":0,"name":"Project Jello","owner":"WVisscher","description":"This is a project for Software Project Management. It is a web app with a PHP backend and a frontend that uses the React library for rendering UI.","members":["DPratt","WSilloway","GScoppino","JChamberlain","WVisscher"],"tasks":[4,3,2,1,0],"risks":[2,1,0]}

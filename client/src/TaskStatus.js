@@ -55,10 +55,12 @@ class TaskStatus extends Component {
 //onChangeMethods
   statusOnChange(event) {
     var newStatusNumber = event.target.value;
+    this.props.onStatusChange(this.props.TaskId, newStatusNumber);
   }
 
   assigneeOnChange(event) {
     var newName = event.target.value;
+    this.props.onAssigneeChange(this.props.TaskId, newName);
   }
 
   hoursOnChange(event) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './ProjectInfoView.css';
+import ContentEditable from './ContentEditable.js';
 
 class ProjectInfoView extends Component {
   constructor(props) {
@@ -12,7 +13,10 @@ class ProjectInfoView extends Component {
         <div className="ProjectHeaderAndMembers">
 
           <div className="ProjectInfoHeader">
-            <span className="ProjectTitle"><b>{this.props.ProjectInfoData.name}</b></span>  
+
+            <div className="ProjectTitle">
+                  <ContentEditable  html={this.props.ProjectInfoData.name} onChange={this.projectNameOnChange.bind(this)}/> 
+            </div>
           </div>
 
           <div className="Members">
@@ -37,12 +41,28 @@ class ProjectInfoView extends Component {
 
         </div>
 
-        <div className="ProjectInfoDescription editable">
-          <p className="CreateDescriptionMargin">  Stuff and things </p>
-        </div>           
+        <div className="ProjectInfoDescription">
+                <div className="CreateDescriptionMargin">
+                  <ContentEditable  html={this.props.ProjectInfoData.description} onChange={this.projectDescriptionOnChange.bind(this)}/> 
+                </div>
+          </div>           
       </div>
     );
   }
+
+   //onChangeMethods
+  projectNameOnChange(event) {
+    var newName = event.target.value;
+
+    alert(newName);
+  }
+
+  projectDescriptionOnChange(event) {
+    var newName = event.target.value;
+
+    alert(newName);
+  }
+
 }
 
 export default ProjectInfoView;
