@@ -58,6 +58,10 @@ function read_task($filepath, $projectId, $taskId){
 }
 
 function update_task($filepath, $projectId, $taskId, $feild, $value){
+	if (is_string($value)) {
+		$value = '"'.$value.'"';
+	}
+
 	return update_feild_if_exists(task_file($filepath, $projectId, $taskId), $feild, $value, 'ERROR{"Error":"Task does not exist"}');
 }
 

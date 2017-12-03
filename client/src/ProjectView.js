@@ -24,7 +24,7 @@ class ProjectView extends Component {
           <ProjectInfoView ProjectInfoData= {this.props.ProjectData}/>
         </div>
         <div className="TaskAndRiskView">        
-          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)}/>
+          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)}/>
           <RisksView RisksData= {this.state.RisksData} onSubmitNewRisk={this.props.onSubmitNewRisk} />
         </div>
       </div>
@@ -87,7 +87,6 @@ class ProjectView extends Component {
         let itemIndex = this.state.TasksData.findIndex(task => task.id === taskId);
         this.setState({
           TasksData: this.state.TasksData.map((item, index) => {
-            console.log(index, itemIndex);
             if (index !== itemIndex) {
               return item;
             } else {
@@ -95,6 +94,28 @@ class ProjectView extends Component {
             }
           })
         });
+      });
+  }
+
+  assigneeChange(taskId, newName) {
+    fetch(`/api/?request=taskupdate&projId=${this.props.ProjectData.id}&taskId=${taskId}&field=assignee&val=${newName}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(task => {
+        let itemIndex = this.state.TasksData.findIndex(task => task.id === taskId);
+        this.setState({
+          TasksData: this.state.TasksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return task;
+            }
+          })
+        });       
       });
   }
 }

@@ -20,7 +20,7 @@ class Tasks extends Component {
 			    </div> 
 			  </div>
 		      <div className="Task-Status">
-		      	<TaskStatus TaskId={this.props.TaskData.id} Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} UserData= {this.props.UserData} onStatusChange={this.changeStatus.bind(this)} />
+		      	<TaskStatus TaskId={this.props.TaskData.id} Assignee={this.props.TaskData.assignee} Hours={this.props.TaskData.hours} Status={this.props.TaskData.status} UserData= {this.props.UserData} onStatusChange={this.changeStatus.bind(this)} onAssigneeChange={this.changeAssignee.bind(this)} />
 		      </div>
 	      </div>
       </div>
@@ -42,6 +42,10 @@ class Tasks extends Component {
 
   changeStatus(taskId, newStatus) {
     this.props.onStatusChange(taskId, newStatus);
+  }
+
+  changeAssignee(taskId, newName) {
+    this.props.onAssigneeChange(taskId, newName);
   }
 }
 
