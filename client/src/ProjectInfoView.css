@@ -8,10 +8,16 @@
     height: 30%;
     width: 70%;
     text-align: left;
-    margin-top: 0px;
-    margin-left: 0%;
     background: #ededed;
     font-style: bold;
+    padding-top: 16px;
+    padding-left: 16px;
+    padding-bottom: 8px;
+}
+
+.ProjectTitle {
+    font-size: 2em;
+    color: #4671A3;
 }
 
 .ProjectInfoDescription
@@ -19,28 +25,11 @@
     text-align: left;
     margin-left: 2px;
     margin-right: 20px;
+    margin-top: 25px;
 }
 
-.givemespace {
-    background: #ededed;
-    height: 20px;
-    width: 100%
-}
-
-.textarea {
-    width: 80%;
-    height: 30%;
-    margin-left: 0%;
-}
-
-.slidetotheleft {
+.CreateDescriptionMargin {
     text-align: left;
     margin-left: 5%;
     margin-right: 5%;
-}
-
-.h1{
-    padding: 0px;
-    margin: 0px;
-    color: #4671a3;
 }

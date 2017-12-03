@@ -9,14 +9,12 @@ class ProjectInfoView extends Component {
   render() {
     return (
       <div className="ProjectInfoView">
-          <div className="givemespace">
-          </div>
           <div className="ProjectInfoHeader">
-                <h1 className= "h1"> {this.props.ProjectInfoData.name} </h1>  
+                <span className="ProjectTitle"><b>{this.props.ProjectInfoData.name}</b></span>  
           </div>
 
           <div className="ProjectInfoDescription editable">
-            <p className= "slidetotheleft">  Stuff and things </p>
+            <p className="CreateDescriptionMargin">  Stuff and things </p>
           </div>           
 
       </div>
@@ -25,3 +23,5 @@ class ProjectInfoView extends Component {
 }
 
 export default ProjectInfoView;
+
+

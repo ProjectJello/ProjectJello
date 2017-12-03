@@ -1,6 +1,10 @@
 .ProjectView {
 	background-color: white;
 	flex-grow: 1;
+	margin-bottom: 25px;
+}
+
+.TaskAndRiskView {
 	margin-left: 12px;
 	margin-right: 12px;
 }
