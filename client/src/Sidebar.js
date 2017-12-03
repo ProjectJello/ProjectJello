@@ -39,7 +39,8 @@ class Sidebar extends Component {
                         </div>
                       ))}
                     </div>
-                    <button onClick={this.submitNewProject}>Create</button>
+                    <button onClick={this.resetNewProjectState.bind(this)}>Cancel</button>
+                    <button onClick={this.submitNewProject.bind(this)}>Create</button>
                   </div>
                   <hr/>
                 </div>
@@ -97,14 +98,18 @@ class Sidebar extends Component {
     }
   }
 
-  submitNewProject(event) {
-    event.preventDefault();
-    this.props.onSubmitNewProject(this.state.projectNameProvided, this.state.projectMembersProvided);
+  resetNewProjectState() {
     this.setState({
       showProjectCreator: false,
       projectNameProvided: '',
       projectMembersProvided: []
     });
+  }
+
+  submitNewProject(event) {
+    event.preventDefault();
+    this.props.onSubmitNewProject(this.state.projectNameProvided, this.state.projectMembersProvided);
+    this.resetNewProjectState();
   }
 
   ProjectClicked(project) {
