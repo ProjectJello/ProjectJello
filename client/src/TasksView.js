@@ -29,7 +29,7 @@ class TasksView extends Component {
       	<div className="TasksTable">
         { this.props.TasksData.length ? (
           this.props.TasksData.map((item, index) => (
-              <Task key={item.id} TaskData={item} UserData= {this.props.UserData} onStatusChange={this.changeStatus.bind(this)} onAssigneeChange={this.changeAssignee.bind(this)} onHoursChange={this.changeHours.bind(this)}/>
+              <Task key={item.id} TaskData={item} UserData= {this.props.UserData} onStatusChange={this.changeStatus.bind(this)} onAssigneeChange={this.changeAssignee.bind(this)} onHoursChange={this.changeHours.bind(this)} onTaskNameChange={this.changeName.bind(this)} onTaskDescriptionChange={this.changeDescription.bind(this)}/>
           ))
         ) : (
             <h2>No Tasks</h2>
@@ -71,6 +71,14 @@ class TasksView extends Component {
 
   changeHours(taskId, newHours) {
     this.props.onChangeHours(taskId, newHours);
+  }
+
+  changeName(taskId, newName) {
+    this.props.onChangeTaskName(taskId, newName);
+  }
+
+  changeDescription(taskId, newDescription) {
+    this.props.onChangeTaskDescription(taskId, newDescription);
   }
 }
 
