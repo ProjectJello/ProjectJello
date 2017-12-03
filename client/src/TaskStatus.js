@@ -4,6 +4,9 @@ import './TaskStatus.css';
 class TaskStatus extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      hoursInputValue: this.props.Hours
+    };
   }
   render() {
     return (
@@ -41,7 +44,7 @@ class TaskStatus extends Component {
             <span>Man-hours:</span>
           </div>
           <div id="TaskHoursContainer">
-        		<input type="number"  min="0" className="TaskHoursInput" defaultValue={this.props.Hours} onChange={this.hoursOnChange.bind(this)}/>
+        		<input type="number"  min="0" className="TaskHoursInput" value={this.state.hoursInputValue} onChange={this.hoursOnChange.bind(this)} onBlur={this.propagateHoursChange.bind(this)}/>
     		  </div>
           <div className="TaskLabel">
             <span id="TaskHoursLabel">h/week</span>
@@ -64,7 +67,13 @@ class TaskStatus extends Component {
   }
 
   hoursOnChange(event) {
-    var newHours = event.target.value;
+    this.setState({
+      hoursInputValue: event.target.value
+    });
+  }
+
+  propagateHoursChange() {
+    this.props.onHoursChange(this.props.TaskId, this.state.hoursInputValue);
   }
 
 }
