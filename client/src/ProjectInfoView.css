@@ -4,7 +4,12 @@
     background: #ededed;
 }
 
+.ProjectHeaderAndMembers {
+    display: flex;
+}
+
 .ProjectInfoHeader {
+    flex-grow: 1;
     height: 30%;
     width: 70%;
     text-align: left;
@@ -20,16 +25,34 @@
     color: #4671A3;
 }
 
+.Members {
+    display: inline-block;
+    text-align: left;
+    color: #4A4A4A;
+    margin-top: 15px;
+    margin-right: 20px;
+    white-space: nowrap;
+    max-width: 500px;
+}
+
+.Owner {
+    display: inline;
+}
+
 .ProjectInfoDescription
 {
     text-align: left;
     margin-left: 2px;
     margin-right: 20px;
-    margin-top: 25px;
 }
 
 .CreateDescriptionMargin {
     text-align: left;
     margin-left: 5%;
     margin-right: 5%;
+}
+
+.PFP {
+    border-radius: 50%;
+    padding-left: 5px;
 }

@@ -1,1 +1,1 @@
-{"name":"Squirrel","projects":[1],"pfp":"/public/pfps/pfp_0.png"}
+{"name":"Squirrel","projects":[1],"pfp":"/pfps/pfp_0.png"}

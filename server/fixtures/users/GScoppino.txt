@@ -1,1 +1,1 @@
-{"name":"GScoppino","projects":[0],"pfp":"/public/pfps/pfp_3.png"}
+{"name":"GScoppino","projects":[0],"pfp":"/pfps/pfp_3.png"}

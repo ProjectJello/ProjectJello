@@ -1,1 +1,1 @@
-{"name":"JChamberlain","projects":[0],"pfp":"/public/pfps/pfp_2.png"}
+{"name":"JChamberlain","projects":[0],"pfp":"/pfps/pfp_2.png"}
