@@ -1,1 +1,1 @@
-{"id":3, "name":"Create Project Screen","assignee":"DPratt","description":"", "hours":24, "status":1}
+{"id":3, "name":"Create Project Screen","assignee":"DPratt","description":"The project screen should show a list of projects in the sidebar and then display project details on the right side of the UI.", "hours":24, "status":1}

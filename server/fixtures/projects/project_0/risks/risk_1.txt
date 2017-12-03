@@ -1,1 +1,1 @@
-{"id":1,"name":"Compatability Issues","description":"", "severity":2}
+{"id":1,"name":"Compatability Issues","description":"We need to ensure the development environment works on all developer machines with no discernable difference. The website should work across multiple browsers.", "severity":2}

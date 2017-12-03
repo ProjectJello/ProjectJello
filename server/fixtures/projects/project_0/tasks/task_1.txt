@@ -1,1 +1,1 @@
-{"id":1, "name":"Create VM","assignee":"GScoppino","description":"", "hours":15, "status":2}
+{"id":1, "name":"Create VM","assignee":"GScoppino","description":"The VM must allow a development environment to be run consistently on the machines of all project members.", "hours":15, "status":2}

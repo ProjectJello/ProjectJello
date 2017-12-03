@@ -1,1 +1,1 @@
-{"id":0, "name":"Create Backend","assignee":"WSilloway","description":"", "hours":20, "status":2}
+{"id":0, "name":"Create Backend","assignee":"WSilloway","description":"The backend is written in PHP and has to support data persistence in some way.", "hours":20, "status":2}

@@ -1,1 +1,1 @@
-{"id":2, "name":"Create Login","assignee":"JChamberlain","description":"", "hours":10, "status":2}
+{"id":2, "name":"Create Login","assignee":"JChamberlain","description":"The login page should take a username and contain our project logo.", "hours":10, "status":2}

@@ -1,1 +1,1 @@
-{"id":2,"name":"GitHub Inexperience","description":"", "severity":1}
+{"id":2,"name":"GitHub Inexperience","description":"The team members have to learn and work with the Git revision control system.", "severity":1}
