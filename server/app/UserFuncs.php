@@ -22,7 +22,7 @@ function user_file($filepath, $username){
 
 function create_user($filepath, $username){
 	if(read_file(user_file($filepath, $username)) == ''){
-		$data = '{"name":"'.$username.'","projects":[],"pfp":"/pfps/default.jpg"}';
+		$data = '{"name":"'.$username.'","projects":[],"pfp":"/pfps/default.png"}';
 		write_file(user_file($filepath, $username), $data);
 		return $data;
 	}else
