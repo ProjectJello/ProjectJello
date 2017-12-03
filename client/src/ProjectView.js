@@ -24,7 +24,7 @@ class ProjectView extends Component {
           <ProjectInfoView ProjectInfoData= {this.props.ProjectData}/>
         </div>
         <div className="TaskAndRiskView">        
-          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)} onChangeHours={this.hoursChange.bind(this)}/>
+          <TasksView TasksData= {this.state.TasksData} onSubmitNewTask={this.props.onSubmitNewTask} UserData={this.props.ProjectData.members} onChangeStatus={this.statusChange.bind(this)} onChangeAssignee={this.assigneeChange.bind(this)} onChangeHours={this.hoursChange.bind(this)} onChangeTaskName={this.taskNameChange.bind(this)} onChangeTaskDescription={this.taskDescriptionChange.bind(this)}/>
           <RisksView RisksData= {this.state.RisksData} onSubmitNewRisk={this.props.onSubmitNewRisk} />
         </div>
       </div>
@@ -139,6 +139,50 @@ class ProjectView extends Component {
           })
         });       
       });    
+  }
+
+  taskNameChange(taskId, newName) {
+    fetch(`/api/?request=taskupdate&projId=${this.props.ProjectData.id}&taskId=${taskId}&field=name&val=${newName}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(task => {
+        let itemIndex = this.state.TasksData.findIndex(task => task.id === taskId);
+        this.setState({
+          TasksData: this.state.TasksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return task;
+            }
+          })
+        });       
+      });      
+  }
+
+  taskDescriptionChange(taskId, newDescription) {
+    fetch(`/api/?request=taskupdate&projId=${this.props.ProjectData.id}&taskId=${taskId}&field=description&val=${newDescription}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json'
+        }
+    })
+      .then(response => response.json())
+      .then(task => {
+        let itemIndex = this.state.TasksData.findIndex(task => task.id === taskId);
+        this.setState({
+          TasksData: this.state.TasksData.map((item, index) => {
+            if (index !== itemIndex) {
+              return item;
+            } else {
+              return task;
+            }
+          })
+        });       
+      });     
   }
 }
 

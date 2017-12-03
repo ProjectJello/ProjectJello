@@ -31,13 +31,13 @@ class Tasks extends Component {
   taskNameOnChange(event) {
 	var newName = event.target.value;
 
-	alert(newName);
+	this.props.onTaskNameChange(this.props.TaskData.id, newName);
   }
 
   taskDescriptionOnChange(event) {
-	var newName = event.target.value;
+	var newDescription = event.target.value;
 
-	alert(newName);
+	this.props.onTaskDescriptionChange(this.props.TaskData.id, newDescription);
   }
 
   changeStatus(taskId, newStatus) {
