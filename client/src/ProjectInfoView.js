@@ -43,7 +43,7 @@ class ProjectInfoView extends Component {
 
         <div className="ProjectInfoDescription">
                 <div className="CreateDescriptionMargin">
-                  <ContentEditable  html={this.props.ProjectInfoData.description} onChange={this.projectDescriptionOnChange.bind(this)}/> 
+                  <ContentEditable html={this.props.ProjectInfoData.description} onChange={this.projectDescriptionOnChange.bind(this)}/> 
                 </div>
           </div>           
       </div>
@@ -54,13 +54,13 @@ class ProjectInfoView extends Component {
   projectNameOnChange(event) {
     var newName = event.target.value;
 
-    alert(newName);
+    this.props.onProjectNameChange(newName);
   }
 
   projectDescriptionOnChange(event) {
-    var newName = event.target.value;
+    var newDescription = event.target.value;
 
-    alert(newName);
+    this.props.onProjectDescriptionChange(newDescription);
   }
 
 }
