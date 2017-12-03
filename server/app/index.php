@@ -79,8 +79,16 @@ switch($request){
 		echo $t_data;
 		break;
 	case 'projectupdate':
-		echo update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
+		$t_data = update_project($filepath, $_GET['projId'], $_GET['field'], $_GET['val']);
+		$users = read_from_json_array($t_data, "members", 1);
 		
+		$user = read_json_field($t_data, "owner", 1);
+		$t_data = update_json_field($t_data, "owner", read_user($filepath, $user));
+		//ERROR IF USER IS IN PROJECT TWICE
+		foreach($users as $user) {
+			$t_data = replace_in_json_array($t_data, "members", '"'.$user.'"', read_user($filepath, $user));
+		}
+		echo $t_data;
 		break;
 	case 'projectdelete':
 		delete_project($filepath, $_GET['projId']);

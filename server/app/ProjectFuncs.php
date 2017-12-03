@@ -74,6 +74,10 @@ function read_project($filepath, $projectId){
 
 
 function update_project($filepath, $projectId, $feild, $value){
+	if (is_string($value)) {
+		$value = '"'.$value.'"';
+	}
+
 	return update_feild_if_exists(project_file($filepath, $projectId), $feild, $value, 'ERROR{"Error":"Project does not exist"}');
 }
 
