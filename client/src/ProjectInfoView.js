@@ -24,7 +24,7 @@ class ProjectInfoView extends Component {
               <span>
                 Owner:
                 
-                  <img className="PFP" src={this.props.ProjectInfoData.owner.pfp} height="30px" width="35px" />
+                  <img className="PFP" src={'..' + this.props.ProjectInfoData.owner.pfp} height="30px" width="35px" />
               </span>
             </div>
 
